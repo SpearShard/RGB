@@ -1,0 +1,30 @@
+@use "variables";
+
+.contact_container {
+    margin: 192px 0;
+    text-align: center;
+    h2 {
+        font-size: 2.2rem;
+    }
+    a {
+        color: variables.$text_default_color;
+        text-decoration: none;
+    }
+    h3 {
+        font-size: 1.9rem;
+        margin-top: 30px;
+        font-weight: 100;
+        font-family: 'Raleway';
+    }
+    .follow {
+        margin-top: 30px;
+        font-family: 'Satoshi';
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: variables.$sm) {
+    .contact_container {
+        margin: 120px 0;
+    }
+}

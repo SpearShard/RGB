@@ -1,0 +1,33 @@
+{
+  "name": "rgbdesign-frontend",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.15.9",
+    "@mui/material": "^5.15.9",
+    "@studio-freight/lenis": "^1.0.42",
+    "aos": "^2.3.4",
+    "eslint": "8.40.0",
+    "eslint-config-next": "13.4.2",
+    "framer-motion": "^12.4.7",
+    "gsap": "^3.12.7",
+    "next": "13.4.2",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "sass": "^1.60.0",
+    "three": "^0.161.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.0.8"
+  }
+}

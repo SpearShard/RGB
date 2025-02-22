@@ -1,0 +1,160 @@
+{
+    "computational_design": {
+        "title": "Computational Design",
+        "projects": [
+            {
+                "title": "Orb[i]s",
+                "subtitle": "Design Research Project",
+                "dir": "Orbis",
+                "cover": "5.jpg",
+                "images": [
+                    "1.jpg",
+                    "2.jpg",
+                    "3.jpg",
+                    "4.jpg",
+                    "5.jpg",
+                    "6.jpg",
+                    "7.jpg"
+                ],
+                "description": ["Orb[i]s a groundbreaking Design Research Project by  Roshni Gera, Elisavet Konstantinidou, Misbah Shehreen Baig and Yunzhu Duan from the Architecture and Urbanism (Design Research Laboratory) at Architectural Association School of Architecture, London. The project reimagines the future of urban environments through adaptive spatial infrastructure. The system transcends traditional architectural boundaries by introducing a Prototypical System composed of intelligent, self-assembling units capable of dynamic reconfiguration in response to urban needs and changes. These spheroidal units, equipped with telescopic legs and electromagnets, interact and rearrange themselves into various urban elements, demonstrating collective intelligence and flexibility. Beyond mere physical structures, Orb[i]s integrates advanced sensory systems and machine learning to enhance user interaction and adaptability, offering a visionary approach to urban development that champions adaptability, responsiveness, and the seamless integration of technology and architecture to foster new forms of cultural and urban spaces."]
+            }, {
+                "title": "Vaults of Sechseläutenplatz",
+                "subtitle": "RhinoVault experiments to achieve Structural Elegance",
+                "dir": "RhinoVault",
+                "cover": "5.jpg",
+                "images": [
+                    "1.jpg",
+                    "2.jpg",
+                    "3.jpg",
+                    "4.jpg",
+                    "5.jpg",
+                    "6.jpg"
+                ],
+                "description": ["A design proposal that utilises the unreinforced masonry of compression only structures, proposing a central vaulted attraction set in the heart of Zürich's Sechseläutenplatz town square. Through extensive experiments and iterations, Rhinovault was used to rationalise the architectural form, showcasing a harmonious balance of horizontal equilibriums. This innovative design not only enhances the square's aesthetic appeal but also introduces a self-supporting and stable structure, seamlessly integrating with the urban fabric of Zürich. Explore the intersection of functionality and beauty through the study of Vaults, paving the way for a visionary approach to contemporary architecture."]
+            }
+        ]
+    },
+    "material_experiments": {
+        "title": "Material Experiments",
+        "projects": [
+            {
+                "title": "Take a Seat",
+                "subtitle": "Recyclable Urban Furniture",
+                "dir": "Church Street - Paper Tube Seater",
+                "cover": "1.jpg",
+                "images": [
+                    "1.jpg",
+                    "2.jpg",
+                    "3.jpg",
+                    "4.jpg",
+                    "5.jpg",
+                    "6.jpg"
+                ],
+                "description": ["The tiniest and only installation to be built on Church Street, as part of Bangalore’s Clean Air Street Movement. A temporary, yet Sustainable seater was made entirely out of 100% Recycled Paper Tubes (usually found as a refuse at Print stores). The installation was built to provoke the idea of Reduce- Reuse-Recycle and stood true to this idea by minimising the amount of waste generated even in the process of fabrication. All the segments of the seater were efficiently designed to make optimal use of the limited material available. The temporary yet sustainable Installation was used by several artists for their performances.The seater endured 1000’s of users and uses whilst serving a different function/experience to each one."]
+            }, {
+                "title": "TETR.IS",
+                "subtitle": "A Sustainable Installation for Dubai Design Week 2023",
+                "dir": "TETR.IS",
+                "cover": "6.jpg",
+                "images": [
+                    "1.jpg",
+                    "2.jpg",
+                    "3.jpg",
+                    "4.jpg",
+                    "5.jpg",
+                    "6.jpg"
+                ],
+                "description": ["TETR.IS revolutionises sustainable design by transforming non-recycled tetrapaks into a captivating installation for Dubai Design Week Urban Commissions 2023. Eschewing traditional adhesives, this innovative process separates tetra pack components, recycling them into durable, aesthetic sheets for construction, without generating waste. Inspired by the game 'tetris', TETR.IS's modular form visually represents the challenge of tetra pack waste, embodying a zero-waste, closed-loop lifecycle. This project not only highlights environmental sustainability but also redefines material reuse, setting a new standard for eco-friendly design."]
+            }, {
+                "title": "An Outdoor Swing",
+                "subtitle": "Using perceived ‘waste’ as a resource",
+                "dir": "An Outdoor Swing",
+                "cover": "2.jpg",
+                "images": [
+                    "1.jpg",
+                    "2.jpg"
+                ],
+                "description": ["The outdoor swing utilised WoW Boards by Trashcon - a startup pioneering a sustainable approach by transforming non-biodegradable materials into building alternatives. By harnessing this innovative material, the outdoor swing design not only ensures durability but also boasts a playful mosaic-like appearance. This project showcases the potential to eliminate wood usage in various products while simultaneously addressing environmental concerns."]
+            }
+        ]
+    },
+    "furniture_design": {
+        "title": "Interiors & Furniture Design",
+        "projects": [
+            {
+                "title": "HSEA Conference Room",
+                "subtitle": "",
+                "dir": "HSEA Conference Room",
+                "cover": "1.jpg",
+                "images": [
+                    "1.jpg",
+                    "2.jpg",
+                    "3.jpg"
+                ],
+                "description": [
+                    "The HSEA Conference Room Renovation project revitalized a 12-year-old space, prioritizing functionality, aesthetics, and virtual meeting capabilities. A standout feature is the custom-fabricated central false ceiling, meticulously designed to optimize weight of the structure whilst being coherence with the wall panels, adding a focal point and enhancing the overall ambiance of the space for meetings and collaboration.",
+                    "Project done in collaboration with Stavya Architects",
+                    "School name : Head Start Educational Academy, Bangalore"
+                ]
+            }, {
+                "title": "Circle Packing",
+                "subtitle": "",
+                "dir": "Pipe Shoe Stands",
+                "cover": "6.jpg",
+                "images": [
+                    "1.jpg",
+                    "2.jpg",
+                    "3.jpg",
+                    "4.jpg",
+                    "5.jpg",
+                    "6.jpg"
+                ],
+                "description": [
+                    "Circle Packing is an innovative shoe storage solution designed to foster social interaction among the school children, using the space. Utilising the  durablity of PVC pipes, the playful design adds a pop of color against the school's earthy brick tones while ensuring easy maintenance. The pipes were arranged into several flexible modules, providing flexility for arrangement and rearrangement as per the need. The design and execution highlights the collaborative effort, showcasing the interactive features and vibrant palette, making it a functional and visually appealing addition to the school environment.",
+                    "Project done in collaboration with Stavya Architects ",
+                    "School name : Head Start Educational Academy, Bangalore"
+                ]
+            }
+        ]
+    },
+    "competitions": {
+        "title": "Competitions",
+        "projects": [
+            {
+                "title": "Flames of Growth & Glory",
+                "subtitle": "Notions of India - Design entry",
+                "dir": "Notions of India",
+                "cover": "1.jpg",
+                "images": [
+                    "1.jpg",
+                    "2.jpg",
+                    "3.jpg",
+                    "4.jpg"
+                ],
+                "description": ["The design of the installation encapsulates the cultural mosaic of India through a geometric rangoli-inspired base and ascending steel curves, symbolising the nation's robust diversity and continual ascent. Alternating panels of corten steel reflect the rich tapestry of Indian heritage, while open spaces invite periodic cultural expressions, embodying India's adaptability. Culminating in flames that represent the eternal spirit of hope and resilience, this sculpture is a timeless tribute to India's shared history and democratic ethos, a beacon of unity and progress."]
+            }
+        ]
+    },
+    "projects_list": [
+        {
+            "title": "Organic design, inspired by nature",
+            "img_src": "Computational Design/Orbis/5.jpg",
+            "theme": "computational_design"
+        },
+        {
+            "title": "Organic design, inspired by nature",
+            "img_src": "Material Experiments/Church Street - Paper Tube Seater/1.jpg",
+            "theme": "material_experiments"
+        },
+        {
+            "title": "Organic design, inspired by nature",
+            "img_src": "Interiors & Furniture Design/HSEA Conference Room/1.jpg",
+            "theme": "furniture_design"
+        },
+        {
+            "title": "Organic design, inspired by nature",
+            "img_src": "Competitions/Notions of India/1.jpg",
+            "theme": "competitions"
+        }
+    ]
+}
