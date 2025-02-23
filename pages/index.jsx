@@ -156,24 +156,16 @@ export default function Home() {
         }, 2000);
 
         AOS.init({
-            duration: 800,
+            duration: 600,
             once: true,
         });
-    }, []);
-
-    useEffect(() => {
-        let timeout = setTimeout(() => {
-            gsap.to(".sdf_animation", { opacity: 1, duration: 1 });
-        }, 1000);
-
-        return () => clearTimeout(timeout);
     }, []);
 
     function renderProjectGrid(projects) {
         if (projects) {
             return projects.map((p, idx) => (
                 <Grid key={idx} item xs={12} sm={6} md={4} className={styles.info_container}>
-                    <div data-aos="fade-up" data-aos-delay={`${Math.min(idx * 50, 300)}`}>
+                    <div data-aos="fade-up">
                         <ProjectBox
                             title={p.title}
                             link={p.theme}
@@ -194,19 +186,19 @@ export default function Home() {
             ) : (
                 <section className={styles.home_section}>
                     <section className={styles.hero_section}>
-                        <SDFAnimation className={`${styles.sdf_animation} sdf_animation`} data-aos="zoom-in" />
+                        <SDFAnimation className={`${styles.sdf_animation} sdf_animation`} data-aos="fade-up" />
                         <div className={styles.hero_overlay}>
                             <h1 className={styles.big_title} data-aos="fade-up">INNOVATION.</h1>
-                            <h1 className={styles.big_title} data-aos="fade-up" data-aos-delay="100">RESEARCH.</h1>
-                            <h1 className={styles.big_title} data-aos="fade-up" data-aos-delay="200">DESIGN.</h1>
+                            <h1 className={styles.big_title} data-aos="fade-up">RESEARCH.</h1>
+                            <h1 className={styles.big_title} data-aos="fade-up">DESIGN.</h1>
                         </div>
                     </section>
 
                     <section className={styles.about_section}>
-                        <Grid container spacing={8}>
+                        <Grid container spacing={4}>
                             <Grid item xs={12} md={6} className={styles.info_container}>
-                                <h3 data-aos="fade-right">RGB DESIGN</h3>
-                                <h2 data-aos="fade-right" data-aos-delay="100">
+                                <h3 data-aos="fade-up">RGB DESIGN</h3>
+                                <h2 data-aos="fade-up">
                                     WHERE DESIGN, TECH, AND NATURE CONVERGE. INNOVATING SUSTAINABLE, STRIKING FUTURES.
                                 </h2>
                                 <IconButton size="large" edge="start" color="inherit" aria-label="menu">
@@ -216,17 +208,17 @@ export default function Home() {
                                 </IconButton>
                             </Grid>
                             <Grid item xs={12} md={6} className={`${styles.info_container} ${styles.para}`}>
-                                <p data-aos="fade-left">
+                                <p data-aos="fade-up">
                                     At RGB Design, we merge Design and Technology with <br />
                                     Natural Intelligence and Computational innovation to <br />
                                     creatively tackle design challenges.
                                 </p>
-                                <p data-aos="fade-left" data-aos-delay="100">
+                                <p data-aos="fade-up">
                                     <span className="highlight_green"><b>Our mission:</b> to blend form and function, delivering sustainable, 
                                     technologically forward, and visually striking design solutions.</span>
                                     We're driven to inspire change and progress, crafting designs that impact both society and the environment positively.
                                 </p>
-                                <p data-aos="fade-left" data-aos-delay="200">Welcome to the future of design!</p>
+                                <p data-aos="fade-up">Welcome to the future of design!</p>
                             </Grid>
                         </Grid>
                     </section>

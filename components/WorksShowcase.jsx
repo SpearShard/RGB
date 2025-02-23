@@ -80,7 +80,7 @@
 // }
 
 
-import { useMemo } from "react";
+import { useMemo } from "react"; 
 import { useRouter } from "next/router";
 import { Grid } from "@mui/material";
 import Image from "next/image";
@@ -105,17 +105,16 @@ export default function WorksShowcase(props) {
                 <Link href={`/works/${p.title}`} passHref>
                     <motion.div
                         className={styles.img_container}
-                        initial={{ y: 50, opacity: 0 }} // Slide-up effect for the container
-                        whileInView={{ y: 0, opacity: 1 }}
-                        viewport={{ once: true, amount: 0.5 }} // ✅ Animation happens once
-                        transition={{ duration: 0.8, ease: "easeOut", delay: idx * 0.1 }}
+                        initial={{ opacity: 0, y: 20 }} // Simpler fade-up effect
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.5 }}
+                        transition={{ duration: 0.5, ease: "easeOut" }}
                     >
-                        {/* ✅ Image Zoom-In Effect */}
                         <motion.div
-                            initial={{ scale: 0, opacity: 0 }}
-                            whileInView={{ scale: 1, opacity: 1 }}
-                            viewport={{ once: true }} // ✅ Ensures it happens only once
-                            transition={{ duration: 0.6, ease: "easeOut", delay: idx * 0.1 }}
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.4, ease: "easeOut" }}
                         >
                             <Image
                                 className={styles.showcase_img}
@@ -130,10 +129,10 @@ export default function WorksShowcase(props) {
                         {/* ✅ Project Title Animation */}
                         <motion.span
                             className={styles.overlay}
-                            initial={{ y: 20, opacity: 0 }}
-                            whileInView={{ y: 0, opacity: 1 }}
-                            viewport={{ once: true }} // ✅ Ensures it happens only once
-                            transition={{ duration: 0.5, delay: idx * 0.1 }}
+                            initial={{ opacity: 0, y: 10 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.4 }}
                         >
                             {p.title}
                         </motion.span>
@@ -144,23 +143,22 @@ export default function WorksShowcase(props) {
     }, [props.data, props.theme, getImageSrc]);
 
     return (
-        <section id={props.theme} className={styles.works_showcase}>
+        <section id={props.theme} className={styles.works_showcase} style={{ padding: "clamp(20px, 5vw, 60px)" }}> 
             {/* ✅ Title Animation */}
             <motion.h1
                 className={styles.category_title}
-                initial={{ y: 50, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                viewport={{ once: true }} // ✅ Ensures it happens only once
-                transition={{ duration: 0.8 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
             >
                 {props.data[props.theme].title}
             </motion.h1>
 
             {/* ✅ Project Grid */}
-            <Grid container spacing={3}>
+            <Grid container spacing={2}>
                 {projectGrid}
             </Grid>
         </section>
     );
 }
-
