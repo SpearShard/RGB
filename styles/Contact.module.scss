@@ -1,134 +1,141 @@
 // @use "variables";
 
-// .contact_container {
-//     margin: 192px 0;
-//     text-align: center;
-//     h2 {
-//         font-size: 2.2rem;
-//     }
-//     a {
-//         color: variables.$text_default_color;
-//         text-decoration: none;
-//     }
-//     h3 {
-//         font-size: 1.9rem;
-//         margin-top: 30px;
-//         font-weight: 100;
-//         font-family: 'Raleway';
-//     }
-//     .follow {
-//         margin-top: 30px;
-//         font-family: 'Satoshi';
-//         font-size: 1.3rem;
-//     }
+// .contactPage {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     height: 100vh;
+//     // background: linear-gradient(135deg, #1E1E2F, #252542);
 // }
 
-// @media (max-width: variables.$sm) {
-//     .contact_container {
-//         margin: 120px 0;
+// .contactCard {
+//     background: rgba(255, 255, 255, 0.1);
+//     backdrop-filter: blur(10px);
+//     border-radius: 15px;
+//     padding: 40px;
+//     text-align: center;
+//     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+//     width: 400px;
+//     border: 1px solid rgba(255, 255, 255, 0.2);
+// }
+
+// .title {
+//     font-size: 2rem;
+//     font-weight: bold;
+//     color: #E0E0E0;
+//     margin-bottom: 10px;
+// }
+
+// .description {
+//     color: #C0C0C0;
+//     font-size: 1rem;
+//     margin-bottom: 20px;
+// }
+
+// .contactInfo {
+//     display: flex;
+//     flex-direction: column;
+//     gap: 15px;
+// }
+
+// .contactItem {
+//     display: flex;
+//     align-items: center;
+//     gap: 10px;
+//     color: #FFFFFF;
+//     font-size: 1.1rem;
+//     text-decoration: none;
+//     padding: 10px;
+//     border-radius: 10px;
+//     transition: all 0.3s ease;
+    
+//     &:hover {
+//         background: rgba(255, 255, 255, 0.2);
 //     }
 // }
 
 
 @use "variables";
 
-.background {
-    position: relative;
+.contactPage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #050A30;
-    overflow: hidden;
+    padding: 20px; // Prevents overflow on smaller screens
 }
 
-/* 🔥 Soft Glow Effect */
-.glow {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, rgba(0, 255, 255, 0.1) 20%, transparent);
-    filter: blur(80px);
-}
-
-/* 🟢 Contact Container */
-.contact_container {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.contactCard {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 40px;
     text-align: center;
-}
-
-/* 🔷 Contact Block with Floating Effect */
-.contact_block {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 50px 80px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
-    backdrop-filter: blur(15px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    width: 400px;
+    max-width: 90%; // Ensures it fits on smaller screens
     border: 1px solid rgba(255, 255, 255, 0.2);
-    transform-style: preserve-3d;
     transition: all 0.3s ease-in-out;
-    
-    &:hover {
-        box-shadow: 0 15px 40px rgba(0, 255, 255, 0.5);
-    }
-}
 
-/* ✨ Glowing Text Animation */
-.glowing_text {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: #CDE9C1;
-    text-transform: uppercase;
-    animation: glowFlicker 1.5s infinite alternate;
-    text-shadow: 0 0 5px #CDE9C1, 0 0 10px #CDE9C1, 0 0 20px #CDE9C1, 0 0 40px #CDE9C1;
-}
-
-@keyframes glowFlicker {
-    0% { opacity: 0.8; text-shadow: 0 0 5px #CDE9C1, 0 0 10px #CDE9C1; }
-    50% { opacity: 1; text-shadow: 0 0 10px #CDE9C1, 0 0 20px #CDE9C1; }
-    100% { opacity: 0.7; text-shadow: 0 0 3px #CDE9C1, 0 0 7px #CDE9C1; }
-}
-
-/* 🌌 Text Styles */
-.h3 {
-    font-size: 1.8rem;
-    margin-top: 20px;
-    font-weight: 500;
-    color: #fff;
-    font-family: 'Raleway', sans-serif;
-    transition: color 0.3s ease;
-}
-
-.h3:hover {
-    color: #CDE9C1;
-}
-
-.follow {
-    margin-top: 20px;
-    font-size: 1.3rem;
-    font-family: 'Satoshi', sans-serif;
-    color: #a2a5b3;
-}
-
-/* 📱 Responsive */
-@media (max-width: 768px) {
-    .contact_block {
+    @media (max-width: 768px) {
+        width: 90%;
         padding: 30px;
     }
 
-    .glowing_text {
-        font-size: 2rem;
+    @media (max-width: 480px) {
+        padding: 20px;
+        width: 100%;
+    }
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #E0E0E0;
+    margin-bottom: 10px;
+
+    @media (max-width: 768px) {
+        font-size: 1.8rem;
     }
 
-    .h3 {
+    @media (max-width: 480px) {
         font-size: 1.5rem;
     }
+}
 
-    .follow {
-        font-size: 1.1rem;
+.description {
+    color: #C0C0C0;
+    font-size: 1rem;
+    margin-bottom: 20px;
+
+    @media (max-width: 480px) {
+        font-size: 0.9rem;
+    }
+}
+
+.contactInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contactItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #FFFFFF;
+    font-size: 1.1rem;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    @media (max-width: 480px) {
+        font-size: 1rem;
+        padding: 8px;
     }
 }
