@@ -1,8 +1,5 @@
-import {
-    Grid
-} from '@mui/material';
+import { Grid } from '@mui/material';
 
-import TextBox from '@/components/TextBox';
 import WorksBox from '@/components/WorksBox';
 
 import materialLogo from '@/public/images/icons/material.svg';
@@ -13,54 +10,48 @@ import styles from '@/styles/About.module.scss';
 
 export default function About() {
     return (
-        <section className={styles.works_container} color="blue">
-            <Grid container spacing={3} gap="1em" justifyContent="center">
-                <Grid item xs={12} md={4} lg={4} className={`${styles.worksBox} ${styles.red}`}>
+        <section className={styles.works_container}>
+            {/* Grid Layout */}
+            <div className={styles.Grim}>
+                <div className={styles.worksBox}>
                     <WorksBox
-                        title={'Material Experiments'}
-                        description={"Embarking on a journey of material innovation at RGB Design! From pioneering research to hands-on experimentation, we're committed to pushing boundaries and harnessing the full potential of every material. Join us as we explore new frontiers in design and unleash the power of innovation, one molecule at a time."}
+                        title="Material Experiments"
+                        description="Embarking on a journey of material innovation at RGB Design! From pioneering research to hands-on experimentation, we're committed to pushing boundaries and harnessing the full potential of every material."
                         img_src={materialLogo}
-                        style={'red'}
                     />
-                </Grid>
-                <Grid item xs={12} md={4} lg={4} className={`${styles.worksBox} ${styles.green}`}
-                >
+                </div>
+                <div className={styles.worksBox}>
                     <WorksBox
-                        title={'Computational Design'}
-                        description={"Fueling design excellence with computational prowess and digital fabrication: Our workflow thrives on the use of cutting edge technology, leveraging computational design to optimize efficiency and drive innovation."}
+                        title="Computational Design"
+                        description="Fueling design excellence with computational prowess and digital fabrication. Our workflow thrives on cutting-edge technology, leveraging computational design to optimize efficiency and drive innovation."
                         img_src={computationLogo}
-                        style={'green'}
                     />
-                </Grid>
-                <Grid item xs={12} md={4} lg={4} className={`${styles.worksBox} ${styles.blue}`}
-                >
+                </div>
+                <div className={styles.worksBox}>
                     <WorksBox
-                        title={'Multi Disciplinary Design'}
-                        description={"As multi-disciplinary designers and design enthusiasts, we thrive on exploring the endless possibilities within every realm of design. Whether it's crafting captivating spaces, sculpting furniture, dreaming up innovative products, or even shaping exquisite jewelry, we're all about pushing boundaries. Join us on this journey of creativity and exploration!"}
+                        title="Multi-Disciplinary Design"
+                        description="As multi-disciplinary designers, we thrive on exploring endless possibilities across different design fields—spaces, furniture, products, jewelry, and beyond!"
                         img_src={intelligenceLogo}
-                        style={'blue'}
                     />
-                </Grid>
-            </Grid>
+                </div>
+            </div>
 
+            {/* About Section */}
             <section className={styles.about}>
                 <h1>Designing Futures</h1>
                 <h2 className={styles.about_text}>
                     RGB Design stands at the forefront of innovation, where the fusion of design, technology,
-                    natural systems, and computational design converges to craft creative and sustainable solutions
-                    to global challenges.
+                    natural systems, and computational design creates sustainable solutions to global challenges.
                 </h2>
                 <h2 className={styles.about_text}>
-                    Our mission is to harness the power of these disciplines, blending aesthetics with functionality,
-                    to develop projects that are not only visually compelling but also environmentally responsible
-                    and technologically advanced.
+                    We blend aesthetics with functionality, developing projects that are visually compelling, 
+                    environmentally responsible, and technologically advanced.
                 </h2>
                 <h2 className={styles.about_text}>
                     At RGB Design, we believe in the transformative power of design to inspire change, drive progress,
-                    and create a better future for our planet.
+                    and shape a better future for our planet.
                 </h2>
             </section>
-
         </section>
-    )
+    );
 }
