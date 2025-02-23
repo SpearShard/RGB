@@ -29,11 +29,13 @@
     }
 }
 
-@media (max-width: variables.$sm) {
+@media (max-width: 600px) {
     .work_details_container {
         padding: 30px 20px;
         .description_container {
             h1 {
+                background-color: blanchedalmond;
+                margin-top: 50px;
                 text-align: left;
             }
             h2 {

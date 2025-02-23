@@ -38,8 +38,11 @@
     
 }
 
-@media (max-width: variables.$sm) {
+@media (max-width: 600px) {
     .works_showcase {
+        // background-color: blanchedalmond;
+        width: 100vw;
+        margin-left: -70px;
         margin-top: 0px;
         .category_title {
             font-size: 1.2rem;
