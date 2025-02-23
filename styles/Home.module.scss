@@ -163,7 +163,7 @@
             animation: zoomIn 1s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
             transform: scale(3);
             opacity: 0;
-            bottom: 10%; // Ensures fractal stays in place
+            bottom: 0; // Ensures fractal stays below navbar
         }
 
         @keyframes zoomIn {
@@ -199,10 +199,12 @@
     }
 
     .about_section {
-        padding: clamp(100px, 15vw, 230px) clamp(30px, 5vw, 60px);
+        padding: clamp(100px, 15vw, 230px) clamp(20px, 5vw, 60px);
         text-align: left;
+        width: 100%; // Ensuring full width
 
         .info_container {
+            width: 100%; // Ensuring full width
             p {
                 font-size: clamp(1rem, 2vw, 1.3rem);
                 font-weight: 300;
@@ -228,9 +230,10 @@
     }
 
     .work_section {
-        padding: clamp(50px, 10vw, 80px) clamp(20px, 7vw, 140px);
+        padding: clamp(50px, 10vw, 80px) clamp(10px, 5vw, 140px);
         display: flex;
         flex-direction: column;
+        width: 100%; // Ensuring full width
 
         .title_container {
             align-self: center;
@@ -258,11 +261,12 @@
                 }
             }
             .sdf_animation {
-                bottom: 5%; // Adjusted to prevent movement on smaller screens
+                bottom: 0; // Ensuring fractal stays below navbar
             }
         }
         .about_section {
             padding: clamp(80px, 10vw, 130px) 5%;
+            width: 100%; // Ensuring full width
             .para {
                 p {
                     text-align: left;
@@ -271,6 +275,7 @@
         }
         .work_section {
             padding: clamp(40px, 8vw, 80px) 5%;
+            width: 100%; // Ensuring full width
         }
     }
 }
