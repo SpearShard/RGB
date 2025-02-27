@@ -89,7 +89,7 @@
     align-items: center;
     transition: transform 0.3s ease-in-out;
     // background: white;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: -10px 4px 10px rgb(234, 5, 5);
     cursor: pointer;
 
     &:hover {
@@ -117,10 +117,19 @@
         position: absolute;
         inset: -12px;
         border-radius: inherit;
-        background: conic-gradient(from var(--angle), #FF4C4C, #CDE9C1, #6E89D7, #FF4C4C);
+        // background: conic-gradient(from var(--angle), #FF4C4C, #CDE9C1, #6E89D7, #FF4C4C);
         z-index: 0;
         animation: spinBorder 3s linear infinite;
         filter: blur(20px);
         opacity: 0.3;
     }
+}
+
+.worksBox:nth-child(2){
+    box-shadow: 0px 4px 10px rgb(205,293,193);
+
+}
+.worksBox:nth-child(3){
+    box-shadow: 10px 4px 10px #6E89D7;
+
 }

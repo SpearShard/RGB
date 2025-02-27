@@ -1,54 +1,62 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import Script from "next/script";
 import Layout from "@/components/Layout";
 import SmoothScroll from "@/components/SmoothScroll";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import Loader from "@/components/Loader";
+import Cookies from "js-cookie";
 import "@/styles/globals.scss";
 
 export default function App({ Component, pageProps }) {
-  const [loading, setLoading] = useState(false);
+  const [hasLoaded, setHasLoaded] = useState(null);
+  const [isMounted, setIsMounted] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
-    const handleStart = () => setLoading(true);
-    const handleComplete = () => setLoading(false);
+    setIsMounted(true);
 
-    router.events.on("routeChangeStart", handleStart);
-    router.events.on("routeChangeComplete", handleComplete);
-    router.events.on("routeChangeError", handleComplete);
+    const cookieExists = Cookies.get("hasLoaded");
+    console.log("Cookie exists:", cookieExists);
+
+    if (!cookieExists) {
+      console.log("Showing Loader");
+      setHasLoaded(false); // Show loader
+    } else {
+      console.log("Skipping Loader");
+      setHasLoaded(true);
+    }
+
+    // ✅ Automatically clear cookie & log in console on page reload
+    const handleBeforeUnload = () => {
+      console.log(
+        'Executing: document.cookie = "hasLoaded=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"'
+      );
+      document.cookie = "hasLoaded=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
 
     return () => {
-      router.events.off("routeChangeStart", handleStart);
-      router.events.off("routeChangeComplete", handleComplete);
-      router.events.off("routeChangeError", handleComplete);
+      window.removeEventListener("beforeunload", handleBeforeUnload);
     };
-  }, [router]);
+  }, []);
 
-  useEffect(() => {
-    const pageKey = `visited_${router.pathname}`;
-    const hasVisited = sessionStorage.getItem(pageKey);
-
-    AOS.init({
-      duration: 1000,
-      once: true, // ✅ Ensures animations only happen once per visit
-      disable: hasVisited !== null, // ✅ Disable animation if page has been visited
-    });
-
-    if (!hasVisited) {
-      sessionStorage.setItem(pageKey, "true"); // ✅ Mark page as visited
-    }
-  }, [router.pathname]);
+  if (!isMounted) return null; // Prevents hydration issues
 
   return (
     <SmoothScroll>
       <Layout>
-        <Component {...pageProps} />
+        {hasLoaded === false ? (
+          <Loader
+            onFinish={() => {
+              console.log("hasLoaded:", hasLoaded, "isMounted:", isMounted);
+              Cookies.set("hasLoaded", "true", { expires: 1 });
+              setHasLoaded(true);
+            }}
+          />
+        ) : (
+          <Component {...pageProps} />
+        )}
       </Layout>
     </SmoothScroll>
   );
 }
-
-
-
