@@ -90,6 +90,7 @@
     transition: transform 0.3s ease-in-out;
     // background: white;
     box-shadow: -10px 4px 10px rgb(234, 5, 5);
+     border: 2px solid red;
     cursor: pointer;
 
     &:hover {
@@ -127,9 +128,12 @@
 
 .worksBox:nth-child(2){
     box-shadow: 0px 4px 10px rgb(205,293,193);
+    border: 2px solid rgb(205,293,193);
 
 }
 .worksBox:nth-child(3){
     box-shadow: 10px 4px 10px #6E89D7;
+    border: 2px solid #6E89D7;
+
 
 }

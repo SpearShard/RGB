@@ -139,6 +139,9 @@
     justify-content: space-between;
     align-items: center;
   }
+  .relative{
+    position: relative;
+  }
 
   .logo {
     position: relative;
@@ -220,6 +223,7 @@
     }
   }
 }
+
 
 .mobileMenu {
   position: fixed;

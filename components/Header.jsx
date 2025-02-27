@@ -112,6 +112,8 @@
 
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router"; // ✅ Import useRouter
+
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { motion, AnimatePresence } from "framer-motion";
@@ -124,6 +126,8 @@ import styles from "@/styles/Header.module.scss";
 import RGBLogo from "@/public/images/logo_.svg";
 
 export default function Header() {
+  const router = useRouter();
+  const isWorkShowcase = router.pathname === "/WorksShowcase";
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [showHeader, setShowHeader] = useState(false); // Controls header animation
@@ -191,8 +195,8 @@ export default function Header() {
     <AnimatePresence>
       {showHeader && (
         <motion.header
-          className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}
-          initial={{ y: "-100%", opacity: 0 }}
+        className={`${styles.header} ${scrolled ? styles.scrolled : ""} ${isWorkShowcase ? styles.relative : ""}`}
+        initial={{ y: "-100%", opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
         >
