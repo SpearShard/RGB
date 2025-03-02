@@ -115,13 +115,24 @@ export default function WorksShowcase(props) {
     const projectGrid = useMemo(() => {
         let projects = [...props.data[props.theme].projects];
 
-        while (projects.length < 6) {
-            projects.push(...props.data[props.theme].projects); // Repeat images if less than 6
-        }
+        // Ensure unique projects (not just unique images)
+        const uniqueProjects = [];
+        const seenTitles = new Set();
 
-        projects = projects.slice(0, 6); // Ensure exactly 6 images
+        projects.forEach((p) => {
+            if (!seenTitles.has(p.title)) {
+                uniqueProjects.push(p);
+                seenTitles.add(p.title);
+            }
+        });
 
-        return projects.map((p, idx) => (
+        // Use unique projects only on mobile (less than 480px)
+        const finalProjects =
+            typeof window !== "undefined" && window.innerWidth <= 480
+                ? uniqueProjects.slice(0, 6) // Only the first 6 unique projects
+                : projects.slice(0, 6); // Default behavior (first 6 projects)
+
+        return finalProjects.map((p, idx) => (
             <div className={styles.box} key={idx}>
                 {p.cover ? (
                     <Link href={`/works/${p.title}`} passHref>
@@ -169,4 +180,5 @@ export default function WorksShowcase(props) {
         </div>
     );
 }
+
 
