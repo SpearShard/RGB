@@ -1,56 +1,63 @@
-// import { useEffect, useState } from 'react';
+// import { useEffect, useState } from "react";
 // import AOS from "aos";
 // import "aos/dist/aos.css";
-// import { Grid, Box } from '@mui/material';
+// import { Grid, Box } from "@mui/material";
 // import Loader from "@/components/Loader";
-// import gsap from "gsap";
-// import Image from 'next/image';
-// import Link from 'next/link';
-// import IconButton from '@mui/material/IconButton';
-// import EastIcon from '@mui/icons-material/East';
+// import Image from "next/image";
+// import Link from "next/link";
+// import IconButton from "@mui/material/IconButton";
+// import EastIcon from "@mui/icons-material/East";
 
-// import SDFAnimation from '@/components/SDFAnimation';
-// import styles from '@/styles/Home.module.scss';
-// import ProjectBox from '@/components/ProjectBox';
+// import SDFAnimation from "@/components/SDFAnimation";
+// import styles from "@/styles/Home.module.scss";
+// import ProjectBox from "@/components/ProjectBox";
 
-// import project_json from '../public/projects.json';
+// import project_json from "../public/projects.json";
 
 // export default function Home() {
-//     const [projects, setProjects] = useState(undefined);
+//     const [projects, setProjects] = useState([]);
 //     const [loading, setLoading] = useState(true);
 
+//     // ✅ Prefetch images before hover
+//     const preloadImages = () => {
+//         project_json.projects_list.forEach((p) => {
+//             const img = new window.Image();
+//             img.src = `/images/projects/${p.img_src}`;
+//         });
+//     };
+
 //     useEffect(() => {
-//         setProjects(project_json['projects_list']);
+//         setProjects(project_json.projects_list);
+//         preloadImages(); // Preload images
 
 //         setTimeout(() => {
 //             setLoading(false);
 //             setTimeout(() => {
-//                 AOS.refreshHard();
+//                 // AOS.refreshHard();
 //             }, 100);
-//         }, 2000);
+//         }, 20);
 
+//         // ✅ Initialize AOS only once
 //         AOS.init({
 //             duration: 600,
 //             once: true,
 //         });
 //     }, []);
 
-//     function renderProjectGrid(projects) {
-//         if (projects) {
-//             return projects.map((p, idx) => (
-//                 <Grid key={idx} item xs={12} sm={6} md={4} className={styles.info_container}>
-//                     <div data-aos="fade-up">
-//                         <ProjectBox
-//                             title={p.title}
-//                             link={p.theme}
-//                             img_src={"/images/projects/" + p.img_src}
-//                             priority={idx < 2}
-//                             loading="lazy"
-//                         />
-//                     </div>
-//                 </Grid>
-//             ));
-//         }
+//     function renderProjectGrid() {
+//         return projects.map((p, idx) => (
+//             <Grid key={idx} item xs={12} sm={6} md={4} className={styles.info_container}>
+//                 <div data-aos="fade-up">
+//                     <ProjectBox
+//                         title={p.title}
+//                         link={p.theme}
+//                         img_src={`/images/projects/${p.img_src}`}
+//                         priority={idx < 4} // Preload first 2 images
+//                         loading="eager" // Ensure images are ready
+//                     />
+//                 </div>
+//             </Grid>
+//         ));
 //     }
 
 //     return (
@@ -62,9 +69,15 @@
 //                     <section className={styles.hero_section}>
 //                         <SDFAnimation className={`${styles.sdf_animation} sdf_animation`} data-aos="fade-up" />
 //                         <div className={styles.hero_overlay}>
-//                             <h1 className={styles.big_title} data-aos="fade-up">INNOVATION.</h1>
-//                             <h1 className={styles.big_title} data-aos="fade-up">RESEARCH.</h1>
-//                             <h1 className={styles.big_title} data-aos="fade-up">DESIGN.</h1>
+//                             <h1 className={styles.big_title} data-aos="fade-up">
+//                                 INNOVATION.
+//                             </h1>
+//                             <h1 className={styles.big_title} data-aos="fade-up">
+//                                 RESEARCH.
+//                             </h1>
+//                             <h1 className={styles.big_title} data-aos="fade-up">
+//                                 DESIGN.
+//                             </h1>
 //                         </div>
 //                     </section>
 
@@ -76,7 +89,7 @@
 //                                     WHERE DESIGN, TECH, AND NATURE CONVERGE. INNOVATING SUSTAINABLE, STRIKING FUTURES.
 //                                 </h2>
 //                                 <IconButton size="large" edge="start" color="inherit" aria-label="menu">
-//                                     <Link href="/about" style={{ color: '#ffffff' }}>
+//                                     <Link href="/about" style={{ color: "#ffffff" }}>
 //                                         <EastIcon />
 //                                     </Link>
 //                                 </IconButton>
@@ -88,9 +101,12 @@
 //                                     creatively tackle design challenges.
 //                                 </p>
 //                                 <p data-aos="fade-up">
-//                                     <span className="highlight_green"><b>Our mission:</b> to blend form and function, delivering sustainable, 
-//                                     technologically forward, and visually striking design solutions.</span>
-//                                     We're driven to inspire change and progress, crafting designs that impact both society and the environment positively.
+//                                     <span className="highlight_green">
+//                                         <b>Our mission:</b> to blend form and function, delivering sustainable,
+//                                         technologically forward, and visually striking design solutions.
+//                                     </span>
+//                                     We're driven to inspire change and progress, crafting designs that impact both
+//                                     society and the environment positively.
 //                                 </p>
 //                                 <p data-aos="fade-up">Welcome to the future of design!</p>
 //                             </Grid>
@@ -99,19 +115,18 @@
 
 //                     <section className={styles.work_section}>
 //                         <div className={styles.title_container}>
-//                             <h1 className={styles.title} data-aos="fade-up">EXPLORE OUR WORK</h1>
+//                             <h1 className={styles.title} data-aos="fade-up">
+//                                 EXPLORE OUR WORK
+//                             </h1>
 //                         </div>
 
-//                         <Grid container spacing={2}>
-//                             {renderProjectGrid(projects)}
-//                         </Grid>
+//                         <Grid container spacing={2}>{renderProjectGrid()}</Grid>
 //                     </section>
 //                 </section>
 //             )}
 //         </>
 //     );
 // }
-
 
 
 import { useEffect, useState } from "react";
@@ -133,47 +148,57 @@ import project_json from "../public/projects.json";
 export default function Home() {
     const [projects, setProjects] = useState([]);
     const [loading, setLoading] = useState(true);
+    const[isHovered, setIsHovered] = useState(false);
 
-    // ✅ Prefetch images before hover
+    // ✅ Function to determine WebP or fallback image
+    const getImageSrc = (fileName) => {
+        return fileName.replace(/\.(jpg|jpeg|png)$/, ".webp");
+    };
+
+    // ✅ Preload WebP images if available
     const preloadImages = () => {
         project_json.projects_list.forEach((p) => {
-            const img = new window.Image();
-            img.src = `/images/projects/${p.img_src}`;
+            const webpImg = new window.Image();
+            webpImg.src = getImageSrc(`/images/projects/${p.img_src}`);
         });
     };
 
     useEffect(() => {
         setProjects(project_json.projects_list);
-        preloadImages(); // Preload images
+        preloadImages(); // Preload WebP images
 
         setTimeout(() => {
             setLoading(false);
-            setTimeout(() => {
-                // AOS.refreshHard();
-            }, 100);
         }, 20);
 
         // ✅ Initialize AOS only once
         AOS.init({
-            duration: 600,
+            duration: 400,
             once: true,
+            easing: "ease-out",
         });
     }, []);
 
     function renderProjectGrid() {
-        return projects.map((p, idx) => (
-            <Grid key={idx} item xs={12} sm={6} md={4} className={styles.info_container}>
-                <div data-aos="fade-up">
-                    <ProjectBox
-                        title={p.title}
-                        link={p.theme}
-                        img_src={`/images/projects/${p.img_src}`}
-                        priority={idx < 4} // Preload first 2 images
-                        loading="eager" // Ensure images are ready
-                    />
-                </div>
-            </Grid>
-        ));
+        return projects.map((p, idx) => {
+            const webpSrc = getImageSrc(`/images/projects/${p.img_src}`);
+            const originalSrc = `/images/projects/${p.img_src}`;
+
+            return (
+                <Grid key={idx} item xs={12} sm={6} md={4} className={styles.info_container}>
+                    <div data-aos="fade-up">
+                        <ProjectBox
+                            title={p.title}
+                            link={p.theme}
+                            img_src={webpSrc} // Use WebP version
+                            fallback={originalSrc} // Fallback for older browsers
+                            priority={idx < 4} // Preload first few images
+                            loading="lazy"
+                        />
+                    </div>
+                </Grid>
+            );
+        });
     }
 
     return (
@@ -183,15 +208,15 @@ export default function Home() {
             ) : (
                 <section className={styles.home_section}>
                     <section className={styles.hero_section}>
-                        <SDFAnimation className={`${styles.sdf_animation} sdf_animation`} data-aos="fade-up" />
+                        <SDFAnimation className={`${styles.sdf_animation} sdf_animation`} data-aos="zoom-in" />
                         <div className={styles.hero_overlay}>
-                            <h1 className={styles.big_title} data-aos="fade-up">
+                            <h1 className={styles.big_title} data-aos="zoom-in">
                                 INNOVATION.
                             </h1>
-                            <h1 className={styles.big_title} data-aos="fade-up">
+                            <h1 className={styles.big_title} data-aos="zoom-in">
                                 RESEARCH.
                             </h1>
-                            <h1 className={styles.big_title} data-aos="fade-up">
+                            <h1 className={styles.big_title} data-aos="zoom-in">
                                 DESIGN.
                             </h1>
                         </div>
@@ -200,8 +225,8 @@ export default function Home() {
                     <section className={styles.about_section}>
                         <Grid container spacing={4}>
                             <Grid item xs={12} md={6} className={styles.info_container}>
-                                <h3 data-aos="fade-up">RGB DESIGN</h3>
-                                <h2 data-aos="fade-up">
+                                <h3 data-aos="zoom-in">RGB DESIGN</h3>
+                                <h2 data-aos="zoom-in">
                                     WHERE DESIGN, TECH, AND NATURE CONVERGE. INNOVATING SUSTAINABLE, STRIKING FUTURES.
                                 </h2>
                                 <IconButton size="large" edge="start" color="inherit" aria-label="menu">
@@ -211,12 +236,12 @@ export default function Home() {
                                 </IconButton>
                             </Grid>
                             <Grid item xs={12} md={6} className={`${styles.info_container} ${styles.para}`}>
-                                <p data-aos="fade-up">
+                                <p data-aos="zoom-in">
                                     At RGB Design, we merge Design and Technology with <br />
                                     Natural Intelligence and Computational innovation to <br />
                                     creatively tackle design challenges.
                                 </p>
-                                <p data-aos="fade-up">
+                                <p data-aos="zoom-in">
                                     <span className="highlight_green">
                                         <b>Our mission:</b> to blend form and function, delivering sustainable,
                                         technologically forward, and visually striking design solutions.
@@ -224,14 +249,14 @@ export default function Home() {
                                     We're driven to inspire change and progress, crafting designs that impact both
                                     society and the environment positively.
                                 </p>
-                                <p data-aos="fade-up">Welcome to the future of design!</p>
+                                <p data-aos="zoom-in">Welcome to the future of design!</p>
                             </Grid>
                         </Grid>
                     </section>
 
                     <section className={styles.work_section}>
                         <div className={styles.title_container}>
-                            <h1 className={styles.title} data-aos="fade-up">
+                            <h1 className={styles.title} data-aos="zoom-in">
                                 EXPLORE OUR WORK
                             </h1>
                         </div>
