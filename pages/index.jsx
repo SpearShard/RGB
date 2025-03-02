@@ -208,15 +208,15 @@ export default function Home() {
             ) : (
                 <section className={styles.home_section}>
                     <section className={styles.hero_section}>
-                        <SDFAnimation className={`${styles.sdf_animation} sdf_animation`} data-aos="zoom-in" />
+                        <SDFAnimation className={`${styles.sdf_animation} sdf_animation`} data-aos="fade-up" />
                         <div className={styles.hero_overlay}>
-                            <h1 className={styles.big_title} data-aos="zoom-in">
+                            <h1 className={styles.big_title} data-aos="fade-up">
                                 INNOVATION.
                             </h1>
-                            <h1 className={styles.big_title} data-aos="zoom-in">
+                            <h1 className={styles.big_title} data-aos="fade-up">
                                 RESEARCH.
                             </h1>
-                            <h1 className={styles.big_title} data-aos="zoom-in">
+                            <h1 className={styles.big_title} data-aos="fade-up">
                                 DESIGN.
                             </h1>
                         </div>
@@ -225,8 +225,8 @@ export default function Home() {
                     <section className={styles.about_section}>
                         <Grid container spacing={4}>
                             <Grid item xs={12} md={6} className={styles.info_container}>
-                                <h3 data-aos="zoom-in">RGB DESIGN</h3>
-                                <h2 data-aos="zoom-in">
+                                <h3 data-aos="fade-up">RGB DESIGN</h3>
+                                <h2 data-aos="fade-up">
                                     WHERE DESIGN, TECH, AND NATURE CONVERGE. INNOVATING SUSTAINABLE, STRIKING FUTURES.
                                 </h2>
                                 <IconButton size="large" edge="start" color="inherit" aria-label="menu">
@@ -236,12 +236,12 @@ export default function Home() {
                                 </IconButton>
                             </Grid>
                             <Grid item xs={12} md={6} className={`${styles.info_container} ${styles.para}`}>
-                                <p data-aos="zoom-in">
+                                <p data-aos="fade-up">
                                     At RGB Design, we merge Design and Technology with <br />
                                     Natural Intelligence and Computational innovation to <br />
                                     creatively tackle design challenges.
                                 </p>
-                                <p data-aos="zoom-in">
+                                <p data-aos="fade-up">
                                     <span className="highlight_green">
                                         <b>Our mission:</b> to blend form and function, delivering sustainable,
                                         technologically forward, and visually striking design solutions.
@@ -249,14 +249,14 @@ export default function Home() {
                                     We're driven to inspire change and progress, crafting designs that impact both
                                     society and the environment positively.
                                 </p>
-                                <p data-aos="zoom-in">Welcome to the future of design!</p>
+                                <p data-aos="fade-up">Welcome to the future of design!</p>
                             </Grid>
                         </Grid>
                     </section>
 
                     <section className={styles.work_section}>
                         <div className={styles.title_container}>
-                            <h1 className={styles.title} data-aos="zoom-in">
+                            <h1 className={styles.title} data-aos="fade-up">
                                 EXPLORE OUR WORK
                             </h1>
                         </div>

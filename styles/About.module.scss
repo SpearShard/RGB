@@ -22,6 +22,7 @@
         }
 
         .about_text {
+            
             font-size: 1.5rem;
             font-weight: 100;
             margin: 20px 0;
@@ -31,6 +32,8 @@
 
 // Responsive Grid Layout
 .Grim {
+    background-color: beige;
+    // padding: 20px;
     display: grid;
     gap: 1em;
     justify-content: center;
@@ -60,21 +63,7 @@
     }
 }
 
-// 🔥 Spiral Animation
-@property --angle {
-    syntax: "<angle>";
-    initial-value: 0deg;
-    inherits: false;
-}
 
-@keyframes spinBorder {
-    from {
-        --angle: 0deg;
-    }
-    to {
-        --angle: 360deg;
-    }
-}
 
 // 💡 WorksBox Styling with Animated Border & Hover Effects
 .worksBox {
@@ -89,51 +78,35 @@
     align-items: center;
     transition: transform 0.3s ease-in-out;
     // background: white;
-    box-shadow: -10px 4px 10px rgb(234, 5, 5);
+    // box-shadow: -10px 4px 10px rgb(234, 5, 5);
      border: 2px solid red;
     cursor: pointer;
 
     &:hover {
         transform: scale(0.95);
     }
-
-    // 🌀 Glowing animated border effect
-    &::after {
-        content: '';
-        position: absolute;
-        inset: -6px;
-        border-radius: inherit;
-        border: 4px solid transparent;
-        background: conic-gradient(from var(--angle), #FF4C4C, #CDE9C1, #6E89D7, #FF4C4C);
-        z-index: 1;
-        animation: spinBorder 3s linear infinite;
-        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-        mask-composite: exclude;
-        -webkit-mask-composite: xor;
-    }
-
-    &::before {
-        content: '';
-        position: absolute;
-        inset: -12px;
-        border-radius: inherit;
-        // background: conic-gradient(from var(--angle), #FF4C4C, #CDE9C1, #6E89D7, #FF4C4C);
-        z-index: 0;
-        animation: spinBorder 3s linear infinite;
-        filter: blur(20px);
-        opacity: 0.3;
-    }
 }
 
 .worksBox:nth-child(2){
-    box-shadow: 0px 4px 10px rgb(205,293,193);
+    // box-shadow: 0px 4px 10px rgb(205,293,193);
     border: 2px solid rgb(205,293,193);
 
 }
 .worksBox:nth-child(3){
-    box-shadow: 10px 4px 10px #6E89D7;
+    // box-shadow: 10px 4px 10px #6E89D7;
     border: 2px solid #6E89D7;
 
 
+}
+
+@media (max-width:480px) {
+    .worksBox{
+        background-color: darkslategrey;
+        width: auto;
+        padding: 0.1px;
+        padding-bottom: -200px;
+    }
+    .description{
+        background-color: cornflowerblue;
+    }
 }

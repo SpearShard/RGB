@@ -251,7 +251,7 @@
 }
 
 // Responsive Styles
-@media (max-width: variables.$md) {
+@media (max-width: 480px) {
     .home_section {
         .hero_section {
             .hero_overlay {
@@ -290,3 +290,9 @@
     transform: scale(1.05);
   }
   
+
+  @media (max-width: 480px) {
+    .sdf_container {
+        bottom: 30px; // Adjust as needed
+    }
+}

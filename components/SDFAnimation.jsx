@@ -113,6 +113,10 @@ export default function SDFAnimation(props) {
     
             setMaterial();
 
+            // if (window.innerWidth <= 480) {
+            //     meshFromSDF.position.y += 5.5;
+            // }
+
             // Apply GSAP animation for zoom-in and slight rotation
             gsap.from(meshFromSDF.scale, { duration: 1.5, x: 0.1, y: 0.1, z: 0.1, ease: "power2.out" });
             gsap.from(meshFromSDF.rotation, { duration: 1.5, y: Math.PI * 2, ease: "power2.out" });
