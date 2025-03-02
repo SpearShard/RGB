@@ -3,104 +3,127 @@
 // .contactPage {
 //     display: flex;
 //     justify-content: center;
-//     background-color: aqua;
 //     align-items: center;
-//     height: 100vh;
+//     min-height: 100vh; // Ensures proper height across devices
+//     background-color: black;
 //     padding: 20px; // Prevents overflow on smaller screens
 // }
 
-// .big{
-//     width: 80vw;
-//     background-color:red;
-//     padding: 2rem;
-//     height: auto;
-//     position: relative;
+// .flexContainer {
 //     display: flex;
-//     justify-content: flex-end;
-//     align-items: center;
-
-//     right: 0;
-
-// }
-// .left{
-//     position: absolute;
-//     width: 30vw;
-//     background-color: blueviolet;
-//     left: 0;
+//     flex-direction: column;
+//     width: 90vw; // Adjusts for smaller screens
+//     max-width: 1200px; // Prevents excessive stretching on large screens
+//     // background-color: rgba(255, 255, 255, 0.2);
+//     padding: 2rem;
+//     border-radius: 1em;
+//     gap: 1rem; // Adds spacing between rows
 // }
 
+// .row {
+//     display: flex;
+//     width: 100%;
+//     gap: 1rem; // Adds spacing between columns
+//     flex-wrap: wrap; // Allows items to wrap on smaller screens
+// }
+
+// .leftBox,
+// .contactCard,
+// .fullWidthBox {
+//     background-color: rgba(255, 255, 255, 0.2);
+//     padding: 2rem;
+//     border-radius: 10px;
+//     border: 1px solid rgba(255, 255, 255, 0.2);
+// }
+
+// // Left Section (Takes more space on larger screens)
+// .leftBox {
+//     flex: 2;
+// }
+
+// // Contact Card (Takes less space)
 // .contactCard {
-//     background: rgba(225, 4, 237, 0.853);
+//     flex: 1;
 //     backdrop-filter: blur(10px);
 //     border-radius: 15px;
+//     display: flex;
+//     flex-direction: column;
 //     padding: 40px;
 //     text-align: center;
 //     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-//     width: 400px;
-//     max-width: 90%; // Ensures it fits on smaller screens
-//     border: 1px solid rgba(255, 255, 255, 0.2);
 //     transition: all 0.3s ease-in-out;
-
-//     @media (max-width: 768px) {
-//         width: 90%;
-//         padding: 30px;
-//     }
-
-//     @media (max-width: 480px) {
-//         padding: 20px;
-//         width: 100%;
-//     }
 // }
 
-// .title {
-//     font-size: 2rem;
-//     font-weight: bold;
-//     color: #E0E0E0;
-//     margin-bottom: 10px;
-
-//     @media (max-width: 768px) {
-//         font-size: 1.8rem;
-//     }
-
-//     @media (max-width: 480px) {
-//         font-size: 1.5rem;
-//     }
-// }
-
-// .description {
-//     color: #C0C0C0;
-//     font-size: 1rem;
-//     margin-bottom: 20px;
-
-//     @media (max-width: 480px) {
-//         font-size: 0.9rem;
-//     }
-// }
-
-// .contactInfo {
-//     display: flex;
-//     flex-direction: column;
-//     gap: 15px;
-// }
-
+// // Contact Item Styling
 // .contactItem {
+//     background-color: rgba(255, 255, 255, 0.2);
 //     display: flex;
 //     align-items: center;
-//     gap: 10px;
-//     color: #FFFFFF;
-//     font-size: 1.1rem;
-//     text-decoration: none;
-//     padding: 10px;
-//     border-radius: 10px;
-//     transition: all 0.3s ease;
+//     margin-left: 2%;
+//     margin-top: 1rem;
+//     padding: 1em;
+//     border-radius: 1em;
+//     color: white;
+//     gap: 1em;
+//     transition: all 0.3s ease-in-out;
 
-//     &:hover {
-//         background: rgba(255, 255, 255, 0.2);
+//     &:nth-child(1):hover {
+//         background-color: rgba(255, 0, 0, 0.144);
+//     }
+//     &:nth-child(2):hover {
+//         background-color: rgba(0, 255, 0, 0.144);
+//     }
+//     &:nth-child(3):hover {
+//         background-color: rgba(0, 0, 255, 0.144);
+//     }
+// }
+
+// // Full-width Box
+// .fullWidthBox {
+//     width: 100%;
+// }
+
+// // ✅ Responsive Design
+// @media (max-width: 1024px) {
+//     .flexContainer {
+//         width: 95vw;
 //     }
 
-//     @media (max-width: 480px) {
-//         font-size: 1rem;
-//         padding: 8px;
+//     .row {
+//         flex-direction: column;
+//         gap: 1.5rem;
+//     }
+
+//     .leftBox,
+//     .contactCard {
+//         flex: 1; // Make both sections take equal space
+//     }
+// }
+
+// @media (max-width: 768px) {
+//     .flexContainer {
+//         padding: 1.5rem;
+//     }
+
+//     .contactItem {
+//         flex-direction: column;
+//         text-align: center;
+//     }
+// }
+
+// @media (max-width: 480px) {
+//     .flexContainer {
+//         width: 100%;
+//         padding: 1rem;
+//     }
+
+//     .contactCard {
+//         padding: 20px;
+//     }
+
+//     .contactItem {
+//         padding: 0.8em;
+//         font-size: 14px;
 //     }
 // }
 
@@ -111,63 +134,69 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; // Ensures proper height across devices
+    min-height: 100vh;
     background-color: black;
-    padding: 20px; // Prevents overflow on smaller screens
+    padding: 20px;
 }
 
 .flexContainer {
     display: flex;
     flex-direction: column;
-    width: 90vw; // Adjusts for smaller screens
-    max-width: 1200px; // Prevents excessive stretching on large screens
-    // background-color: rgba(255, 255, 255, 0.2);
+    width: 90vw;
+    max-width: 1200px;
     padding: 2rem;
     border-radius: 1em;
-    gap: 1rem; // Adds spacing between rows
+    gap: 1rem;
 }
 
 .row {
     display: flex;
     width: 100%;
-    gap: 1rem; // Adds spacing between columns
-    flex-wrap: wrap; // Allows items to wrap on smaller screens
+    gap: 1rem;
+    flex-wrap: wrap;
 }
 
-.leftBox,
-.contactCard,
-.fullWidthBox {
-    background-color: rgba(255, 255, 255, 0.2);
-    padding: 2rem;
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-// Left Section (Takes more space on larger screens)
 .leftBox {
     flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
-// Contact Card (Takes less space)
+.gridImage {
+    width: 100%;
+    // border-radius: 10px;
+    object-fit: cover;
+    border-top-left-radius: 15px;
+}
+
 .contactCard {
     flex: 1;
     backdrop-filter: blur(10px);
-    border-radius: 15px;
+    border-top-right-radius: 15px;
     display: flex;
     flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.088);
+
     padding: 40px;
     text-align: center;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease-in-out;
 }
 
-// Contact Item Styling
+.contactInfo {
+    display: flex;
+    flex-direction: column;
+    
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
 .contactItem {
     background-color: rgba(255, 255, 255, 0.2);
     display: flex;
+    text-decoration: none;
     align-items: center;
-    margin-left: 2%;
-    margin-top: 1rem;
     padding: 1em;
     border-radius: 1em;
     color: white;
@@ -184,10 +213,59 @@
         background-color: rgba(0, 0, 255, 0.144);
     }
 }
+.contactItem{
+    border-radius: 0;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+.contactItem:nth-child(2){
+    border-radius: 0;
+}
+.contactItem:nth-child(3){
+    border-radius: 0;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
 
-// Full-width Box
+// Bottom Grid - Logo
 .fullWidthBox {
     width: 100%;
+    display: flex;
+    justify-content: center;
+    border-bottom-left-radius:30px;
+    border-bottom-right-radius:30px;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.088);
+    padding: 40px;
+}
+
+@media (max-width: 480px) {
+    .gridImage{
+        border-top-right-radius: 30px;
+        border-top-left-radius: 30px;
+    }
+    .contactCard{
+        
+        border-top-right-radius: 0px;
+    }
+    .contactItem{
+        border-radius: 0;
+        border-top-left-radius: 30px;
+        border-top-right-radius: 30px;
+    }
+    .contactItem:nth-child(2){
+        border-radius: 0;
+    }
+    .contactItem:nth-child(3){
+        border-radius: 0;
+        border-bottom-left-radius: 30px;
+        border-bottom-right-radius: 30px;
+    }
+}
+
+.logo {
+    max-width: 200px;
+    height: auto;
 }
 
 // ✅ Responsive Design
@@ -203,7 +281,7 @@
 
     .leftBox,
     .contactCard {
-        flex: 1; // Make both sections take equal space
+        flex: 1;
     }
 }
 
@@ -233,5 +311,3 @@
         font-size: 14px;
     }
 }
-
-
