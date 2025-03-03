@@ -15,17 +15,37 @@
             font-style: italic;
         }
         p {
+            display: flex;
+            text-align: left;
             font-size: 1.2rem;
             line-height: 2rem;
-            padding: 0 150px;
             font-weight: 100;
-            margin: 8px 0;
+            margin-bottom: 2em;
+            padding: 2rem;
+            border-radius: 20px;
+            border: 2px
+            solid transparent;
+            border-radius: 20px;
+            background-image: linear-gradient(to right, #000000, #ffffff22), 
+                          linear-gradient(to right, #ffffff, #000000);
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+
+            background-color: rgba(222, 184, 135, 0.159);
+            width: auto;
             // text-align: justify;
         }
     }
     .cover_img {
         width: 100%;
         height: auto;
+        border: 2px
+        solid transparent;
+        border-radius: 20px;
+        background-image: linear-gradient(to right, #000000, #000000), 
+                          linear-gradient(to right, #ffffff, #000000);
+        background-origin: border-box;
+        background-clip: padding-box, border-box;
     }
 }
 

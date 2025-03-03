@@ -146,13 +146,34 @@
     align-items: center;
 }
 
-.Block {
-    background-color: rgba(245, 245, 220, 0.123);
-    // border: 2px ridge rgb(245, 222, 179);
-    border-top: 4px solid rgba(0, 128, 0, 0.318);
-    border-bottom: 4px solid rgba(255, 0, 0, 0.256);
+// .Block {
+//     // background-color: rgba(245, 245, 220, 0.123);
+//     // border: 2px ridge rgb(245, 222, 179);
+//     border: 2px solid white;
 
+//     border-radius: 20px;
+//     display: flex;
+//     align-items: flex-start;
+//     justify-content: center;
+//     gap: 2rem;
+//     max-width: 1200px;
+//     width: 100%;
+//     margin: 2rem 0;
+// }
+
+.Block {
+    // background-color: rgba(245, 245, 220, 0.123);
+    // border: 2px ridge rgb(245, 222, 179);
+    
+    // Replace the solid white border with a gradient
+    border: 0.7px
+    solid transparent;
     border-radius: 20px;
+    background-image: linear-gradient(to right, #000000, #000000), 
+                      linear-gradient(to right, #ffffff, #000000);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    
     display: flex;
     align-items: flex-start;
     justify-content: center;
@@ -161,6 +182,7 @@
     width: 100%;
     margin: 2rem 0;
 }
+
 
 /* Left Side - Title & Description */
 .textContainer {
@@ -307,6 +329,29 @@
     //     letter-spacing: 5px;
     // }
 }
+
+.boxContainer {
+    display: flex;
+    gap: 10px; // Space between boxes
+    justify-content: left; // Center them horizontally
+    align-items: center; // Align in the middle
+    margin-top: 10px;
+}
+
+.colorBox {
+    width: 20px; // Size of each box
+    height: 20px;
+    border-radius: 4px; // Slightly rounded corners
+}
+
+
+// @keyframes colorChange {
+//     0% { color: red; }
+//     33% { color: green; }
+//     66% { color: blue; }
+//     100% { color: red; }
+// }
+
 
 
 @media (max-width: 1024px) {

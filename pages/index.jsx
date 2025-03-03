@@ -17,47 +17,57 @@
 // export default function Home() {
 //     const [projects, setProjects] = useState([]);
 //     const [loading, setLoading] = useState(true);
+//     const[isHovered, setIsHovered] = useState(false);
 
-//     // ✅ Prefetch images before hover
+//     // ✅ Function to determine WebP or fallback image
+//     const getImageSrc = (fileName) => {
+//         return fileName.replace(/\.(jpg|jpeg|png)$/, ".webp");
+//     };
+
+//     // ✅ Preload WebP images if available
 //     const preloadImages = () => {
 //         project_json.projects_list.forEach((p) => {
-//             const img = new window.Image();
-//             img.src = `/images/projects/${p.img_src}`;
+//             const webpImg = new window.Image();
+//             webpImg.src = getImageSrc(`/images/projects/${p.img_src}`);
 //         });
 //     };
 
 //     useEffect(() => {
 //         setProjects(project_json.projects_list);
-//         preloadImages(); // Preload images
+//         preloadImages(); // Preload WebP images
 
 //         setTimeout(() => {
 //             setLoading(false);
-//             setTimeout(() => {
-//                 // AOS.refreshHard();
-//             }, 100);
 //         }, 20);
 
 //         // ✅ Initialize AOS only once
 //         AOS.init({
-//             duration: 600,
+//             duration: 400,
 //             once: true,
+//             easing: "ease-out",
 //         });
 //     }, []);
 
 //     function renderProjectGrid() {
-//         return projects.map((p, idx) => (
-//             <Grid key={idx} item xs={12} sm={6} md={4} className={styles.info_container}>
-//                 <div data-aos="fade-up">
-//                     <ProjectBox
-//                         title={p.title}
-//                         link={p.theme}
-//                         img_src={`/images/projects/${p.img_src}`}
-//                         priority={idx < 4} // Preload first 2 images
-//                         loading="eager" // Ensure images are ready
-//                     />
-//                 </div>
-//             </Grid>
-//         ));
+//         return projects.map((p, idx) => {
+//             const webpSrc = getImageSrc(`/images/projects/${p.img_src}`);
+//             const originalSrc = `/images/projects/${p.img_src}`;
+
+//             return (
+//                 <Grid key={idx} item xs={12} sm={6} md={4} className={styles.info_container}>
+//                     <div data-aos="fade-up">
+//                         <ProjectBox
+//                             title={p.title}
+//                             link={p.theme}
+//                             img_src={webpSrc} // Use WebP version
+//                             fallback={originalSrc} // Fallback for older browsers
+//                             priority={idx < 4} // Preload first few images
+//                             loading="lazy"
+//                         />
+//                     </div>
+//                 </Grid>
+//             );
+//         });
 //     }
 
 //     return (
@@ -148,24 +158,9 @@ import project_json from "../public/projects.json";
 export default function Home() {
     const [projects, setProjects] = useState([]);
     const [loading, setLoading] = useState(true);
-    const[isHovered, setIsHovered] = useState(false);
-
-    // ✅ Function to determine WebP or fallback image
-    const getImageSrc = (fileName) => {
-        return fileName.replace(/\.(jpg|jpeg|png)$/, ".webp");
-    };
-
-    // ✅ Preload WebP images if available
-    const preloadImages = () => {
-        project_json.projects_list.forEach((p) => {
-            const webpImg = new window.Image();
-            webpImg.src = getImageSrc(`/images/projects/${p.img_src}`);
-        });
-    };
 
     useEffect(() => {
         setProjects(project_json.projects_list);
-        preloadImages(); // Preload WebP images
 
         setTimeout(() => {
             setLoading(false);
@@ -181,17 +176,15 @@ export default function Home() {
 
     function renderProjectGrid() {
         return projects.map((p, idx) => {
-            const webpSrc = getImageSrc(`/images/projects/${p.img_src}`);
-            const originalSrc = `/images/projects/${p.img_src}`;
+            const originalSrc = `/images/projects/${p.img_src}`; // Use normal images
 
             return (
                 <Grid key={idx} item xs={12} sm={6} md={4} className={styles.info_container}>
                     <div data-aos="fade-up">
                         <ProjectBox
-                            title={p.title}
-                            link={p.theme}
-                            img_src={webpSrc} // Use WebP version
-                            fallback={originalSrc} // Fallback for older browsers
+                            // title={p.title}
+                            // link={p.theme}
+                            img_src={originalSrc} // ✅ Use normal image
                             priority={idx < 4} // Preload first few images
                             loading="lazy"
                         />
@@ -268,3 +261,4 @@ export default function Home() {
         </>
     );
 }
+

@@ -92,7 +92,7 @@ const SlideUpImage = ({ src }) => {
             whileInView="visible"
             viewport={{ once: true, amount: 0.5 }} // Ensures animation happens only once
         >
-            <Image className={styles.cover_img} src={src} width={100} height={100} alt="project image" />
+            <Image className={styles.cover_img} src={src} width={800} height={600} alt="project image" />
         </motion.div>
     );
 };
