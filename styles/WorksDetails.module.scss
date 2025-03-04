@@ -22,14 +22,12 @@
             font-weight: 100;
             margin-bottom: 2em;
             padding: 2rem;
-            border-radius: 20px;
-            border: 2px
-            solid transparent;
+            // border: 2px
             border-radius: 20px;
             background-image: linear-gradient(to right, #000000, #ffffff22), 
                           linear-gradient(to right, #ffffff, #000000);
-            background-origin: border-box;
-            background-clip: padding-box, border-box;
+            // background-origin: border-box;
+            // background-clip: padding-box, border-box;
 
             background-color: rgba(222, 184, 135, 0.159);
             width: auto;
@@ -70,6 +68,16 @@
                 line-height: 1.4rem;
                 padding: 0 0px;
                 text-align: left;
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .work_details_container{
+        .description_container{
+            p{
+                padding: 1rem;
             }
         }
     }
