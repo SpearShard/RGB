@@ -189,6 +189,9 @@
                 letter-spacing: clamp(0.5rem, 2vw, 1.2rem);
                 text-transform: uppercase;
             }
+            .big_title:nth-child(1){
+                background-color: rgba(72, 72, 194, 0.59);
+            }
         }
 
         .profile_image {

@@ -158,6 +158,8 @@ import project_json from "../public/projects.json";
 export default function Home() {
     const [projects, setProjects] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [hoveredIndex, setHoveredIndex] = useState(null);
+    const [hoverColor, setHoverColor] = useState('red'); // Default color
 
     useEffect(() => {
         setProjects(project_json.projects_list);
@@ -175,19 +177,85 @@ export default function Home() {
     }, []);
 
     function renderProjectGrid() {
-        return projects.map((p, idx) => {
-            const originalSrc = `/images/projects/${p.img_src}`; // Use normal images
+        // Only show first 4 projects in a 2x2 grid
+        const displayProjects = projects.slice(0, 4);
+        
+        return displayProjects.map((p, idx) => {
+            const originalSrc = `/images/projects/${p.img_src}`;
+            const isHovered = hoveredIndex === idx;
+            
+            // Apply color filter on hover with animation
+            const imageStyle = {
+                filter: isHovered ? 
+                    `grayscale(100%) sepia(100%) hue-rotate(${
+                        idx % 3 === 0 ? '0deg' :  // Red
+                        idx % 3 === 1 ? '180deg' : // Blue
+                        '90deg'                   // Green
+                    }) saturate(3)` : 
+                    'none',
+                transition: 'filter 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+                transform: isHovered ? 'scale(1.05)' : 'scale(1)',
+                width: '100%',
+                height: 'auto',
+                objectFit: 'cover',
+                aspectRatio: '16/9',
+                borderRadius: '8px',
+            };
+
+            // Overlay animation styles
+            const overlayStyle = {
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor: 'rgba(0, 0, 0, 0.3)',
+                color: 'white',
+                fontSize: '1.5rem',
+                fontWeight: 'bold',
+                textTransform: 'uppercase',
+                letterSpacing: '1px',
+                opacity: isHovered ? 1 : 0,
+                transition: 'opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1)'
+            };
 
             return (
-                <Grid key={idx} item xs={12} sm={6} md={4} className={styles.info_container}>
-                    <div data-aos="fade-up">
-                        <ProjectBox
-                            // title={p.title}
-                            // link={p.theme}
-                            img_src={originalSrc} // ✅ Use normal image
-                            priority={idx < 4} // Preload first few images
-                            loading="lazy"
-                        />
+                <Grid key={idx} item xs={6} sm={6} md={6} className={styles.info_container}>
+                    <div 
+                        data-aos="fade-up"
+                        onMouseEnter={() => setHoveredIndex(idx)}
+                        onMouseLeave={() => setHoveredIndex(null)}
+                        style={{ 
+                            cursor: 'pointer',
+                            height: '100%',
+                            padding: '12px',
+                            boxSizing: 'border-box',
+                            transition: 'transform 0.3s ease'
+                        }}
+                    >
+                        <div style={{ 
+                            position: 'relative',
+                            height: '100%',
+                            overflow: 'hidden',
+                            boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
+                            borderRadius: '8px',
+                        }}>
+                            <Image 
+                                src={originalSrc}
+                                alt={`Project ${idx + 1}`}
+                                width={500}
+                                height={300}
+                                priority={true}
+                                loading="eager"
+                                style={imageStyle}
+                            />
+                            <div style={overlayStyle}>
+                                View Project
+                            </div>
+                        </div>
                     </div>
                 </Grid>
             );
@@ -254,7 +322,9 @@ export default function Home() {
                             </h1>
                         </div>
 
-                        <Grid container spacing={2}>{renderProjectGrid()}</Grid>
+                        <Grid container spacing={3} justifyContent="center" style={{ maxWidth: '1200px', margin: '0 auto', padding: '20px' }}>
+                            {renderProjectGrid()}
+                        </Grid>
                     </section>
                 </section>
             )}

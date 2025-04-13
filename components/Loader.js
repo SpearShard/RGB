@@ -1,127 +1,91 @@
-// import React, { useState, useEffect } from "react";
-// import { motion, AnimatePresence } from "framer-motion";
-// import styles from "@/styles/Loader.module.scss";
-
-// export default function Loader({ onFinish = () => {} }) {
-//   const [progress, setProgress] = useState(0);
-//   const [loading, setLoading] = useState(true);
-
-//   useEffect(() => {
-//     const interval = setInterval(() => {
-//       setProgress((prev) => {
-//         if (prev >= 100) {
-//           clearInterval(interval);
-//           setTimeout(() => {
-//             setLoading(false);
-//             onFinish();
-//           }, 2000); // Delay for smooth transition
-//           return 100;
-//         }
-//         return prev + 1;
-//       });
-//     }, 11); // Speed of loading
-
-//     return () => clearInterval(interval);
-//   }, [onFinish]);
-
-//   return (
-//     <AnimatePresence>
-//       {loading && (
-//         <motion.div
-//           className={styles.loaderContainer}
-//           initial={{ opacity: 1 }}
-//           animate={{ opacity: 1 }}
-//           exit={{ opacity: 0, transition: { duration: 1 } }}
-//         >
-//           {/* Glowing Logo */}
-//           <motion.div
-//             className={styles.logo}
-//             initial={{ scale: 0.9, opacity: 0 }}
-//             animate={{ scale: 1, opacity: 1 }}
-//             transition={{ duration: 1, ease: "easeOut" }}
-//           >
-//             <span className={styles.glowText}>Welcome to RGB Design</span>
-//           </motion.div>
-
-//           {/* Pulsating Percentage */}
-//           <motion.div
-//             className={styles.percentage}
-//             animate={{ scale: [1, 1.1, 1], opacity: [0.8, 1, 0.8] }}
-//             transition={{ duration: 1, repeat: Infinity }}
-//           >
-//             {progress}%
-//           </motion.div>
-
-//           {/* Liquid Loading Bar */}
-//           <motion.div className={styles.loadingBarWrapper}>
-//             <motion.div
-//               className={styles.loadingBar}
-//               initial={{ width: "0%" }}
-//               animate={{ width: `${progress}%` }}
-//               transition={{ duration: 0.03, ease: "linear" }}
-//             />
-//           </motion.div>
-//         </motion.div>
-//       )}
-//     </AnimatePresence>
-//   );
-// }
-
-
-
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import styles from "@/styles/Loader.module.scss";
 import Cookies from "js-cookie";
 
 export default function Loader({ onFinish = () => {} }) {
-  const [progress, setProgress] = useState(0);
-  const [loading, setLoading] = useState(!Cookies.get("hasLoaded")); // Check if cookie exists
+  const [loading, setLoading] = useState(true);
+  const [videoEnded, setVideoEnded] = useState(false);
+  const videoRef = useRef(null);
 
   useEffect(() => {
-    if (!loading) {
-      onFinish();
-      return;
-    }
-
-    const interval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(interval);
+    // Play the video when component mounts
+    if (videoRef.current) {
+      // Add event listener for when video ends
+      videoRef.current.addEventListener('ended', () => {
+        // First mark the video as ended
+        setVideoEnded(true);
+        
+        // Then fade out the loader after a delay
+        setTimeout(() => {
+          setLoading(false);
+          Cookies.set("hasLoaded", "true");
+          
+          // Add a slight delay before triggering home page animations
+          setTimeout(() => {
+            onFinish();
+          }, 300);
+        }, 1500); // Longer delay for smoother transition
+      });
+      
+      // Start playing the video
+      videoRef.current.play().catch(error => {
+        console.error("Video playback failed:", error);
+        // Fallback in case video fails to play
+        setTimeout(() => {
+          setVideoEnded(true);
           setTimeout(() => {
             setLoading(false);
-            Cookies.set("hasLoaded", "true"); // Cookie expires in 1 day
+            Cookies.set("hasLoaded", "true");
             onFinish();
-          }, 1000); // Smooth transition delay
-          return 100;
-        }
-        return prev + 1;
+          }, 1500);
+        }, 3000);
       });
-    }, 11); // Speed of loading animation
-
-    return () => clearInterval(interval);
-  }, [loading, onFinish]);
+    }
+    
+    return () => {
+      // Clean up event listener
+      if (videoRef.current) {
+        videoRef.current.removeEventListener('ended', () => {});
+      }
+    };
+  }, [onFinish]);
 
   return (
     <AnimatePresence>
       {loading && (
         <motion.div
           className={styles.loaderContainer}
-          initial={{ opacity: 1 }}
+          initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          exit={{ opacity: 0, transition: { duration: 1 } }}
+          exit={{ 
+            opacity: 0,
+            transition: { 
+              duration: 1.5,
+              ease: "easeInOut"
+            }
+          }}
         >
-          <motion.div className={styles.logo}>
-            <span className={styles.glowText}>Welcome to RGB Design</span>
-          </motion.div>
-          <motion.div className={styles.percentage}>{progress}%</motion.div>
-          <motion.div className={styles.loadingBarWrapper}>
-            <motion.div
-              className={styles.loadingBar}
-              initial={{ width: "0%" }}
-              animate={{ width: `${progress}%` }}
+          <div className={styles.videoWrapper}>
+            <video
+              ref={videoRef}
+              className={styles.loaderVideo}
+              src="/255.mp4"
+              muted
+              playsInline
             />
-          </motion.div>
+            
+            {videoEnded && (
+              <motion.div 
+                className={styles.fadeOverlay}
+                initial={{ opacity: 0 }}
+                animate={{ 
+                  opacity: 1,
+                  transition: { duration: 1.2 }
+                }}
+              />
+            )}
+          </div>
         </motion.div>
       )}
     </AnimatePresence>
