@@ -64,8 +64,11 @@ export default function WorksShowcase(props) {
         ));
     }, [props.data, props.theme, getImageSrc]);
 
-    // Determine if this is the Material Experiments category
-    const isMaterialExperiments = props.data[props.theme].title === "Material Experiments";
+    // Determine which category we're displaying
+    const categoryTitle = props.data[props.theme].title;
+    const isMaterialExperiments = categoryTitle === "Material Experiments";
+    const isInteriorFurniture = categoryTitle === "Interiors & Furniture Design" || categoryTitle === "Interior and Furniture Design";
+    const isComputationalDesign = categoryTitle === "Computational Design";
 
     return (
         <div className={styles.con}>
@@ -74,15 +77,25 @@ export default function WorksShowcase(props) {
                     {isMaterialExperiments ? (
                         <div className={styles.categoryHeader}>
                             <div className={styles.redDot}></div>
-                            <h2 className={styles.categoryTitle}>{props.data[props.theme].title}</h2>
+                            <h2 className={styles.categoryTitle}>{categoryTitle}</h2>
+                        </div>
+                    ) : isInteriorFurniture ? (
+                        <div className={styles.categoryHeader}>
+                            <div className={styles.blueDot}></div>
+                            <h2 className={styles.categoryTitle}>{categoryTitle}</h2>
+                        </div>
+                    ) : isComputationalDesign ? (
+                        <div className={styles.categoryHeader}>
+                            <div className={styles.greenDot}></div>
+                            <h2 className={styles.categoryTitle}>{categoryTitle}</h2>
                         </div>
                     ) : (
-                        <h2 className={styles.categoryTitle}>{props.data[props.theme].title}</h2>
+                        <h2 className={styles.categoryTitle}>{categoryTitle}</h2>
                     )}
                     <p className={styles.description}>
-                        This category showcases projects related to {props.data[props.theme].title}. Browse through the works to explore more.
+                        This category showcases projects related to {categoryTitle}. Browse through the works to explore more.
                     </p>
-                    {!isMaterialExperiments && (
+                    {!isMaterialExperiments && !isInteriorFurniture && !isComputationalDesign && (
                         <div className={styles.boxContainer}>
                             <div className={styles.colorBox} style={{ backgroundColor: "red" }}></div>
                             <div className={styles.colorBox} style={{ backgroundColor: "green" }}></div>
