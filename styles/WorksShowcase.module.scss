@@ -254,6 +254,14 @@
   overflow: hidden;
 }
 
+@media (max-width: 480px) {
+  .dynamicShowcase {
+    padding: 0;
+    width: 100vw;
+    margin-left: -3.9rem;
+  }
+}
+
 /* Category Header */
 .categoryHeader {
   display: flex;
