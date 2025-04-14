@@ -108,7 +108,7 @@ export default function WorksShowcase(props) {
             transition={{ duration: 0.8 }}
             ref={containerRef}
         >
-            <div className={styles.categoryHeader} style={{ borderColor: getCategoryColor() }}>
+            <div  className={styles.categoryHeader} style={{ borderColor: getCategoryColor() }}>
                 <motion.div 
                     className={styles.categoryPulse}
                     style={{ backgroundColor: getCategoryColor() }}

@@ -11,6 +11,9 @@ export default function Loader({ onFinish = () => {} }) {
   useEffect(() => {
     // Play the video when component mounts
     if (videoRef.current) {
+      // Set playback rate to make the video faster (1.5x speed)
+      videoRef.current.playbackRate = 1.5;
+      
       // Add event listener for when video ends
       videoRef.current.addEventListener('ended', () => {
         // First mark the video as ended

@@ -11,8 +11,7 @@
     // border: 2px ridge rgb(245, 222, 179);
     
     // Replace the solid white border with a gradient
-    border: 0.7px
-    solid transparent;
+    border: 0.7px solid transparent;
     border-radius: 20px;
     background-image: linear-gradient(to right, #000000, #000000), 
                       linear-gradient(to right, #ffffff, #000000);
@@ -31,6 +30,7 @@
 
 /* Left Side - Title & Description */
 .textContainer {
+    
     margin-top:2%;
     margin-left: 1%;
     // background-color: aqua;
@@ -164,15 +164,6 @@
     .row {
         grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     }
-
-    // .categoryTitle {
-    //     width: 88vw;
-    //     font-size: 2.5vw;
-    //     margin-left: -9vw;
-    //     border-radius: 1em;
-    //     padding: 10px;
-    //     letter-spacing: 5px;
-    // }
 }
 
 .boxContainer {
@@ -249,6 +240,7 @@
     .description {
         font-size: 0.8rem;
     }
+    
 }
 
 
