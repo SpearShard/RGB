@@ -60,7 +60,7 @@ export default function Home() {
                 aspectRatio: '16/9',
                 borderRadius: '8px',
             };
-
+    
             // Overlay animation styles
             const overlayStyle = {
                 position: 'absolute',
@@ -80,42 +80,44 @@ export default function Home() {
                 opacity: isHovered ? 1 : 0,
                 transition: 'opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1)'
             };
-
+    
             return (
-                <Grid key={idx} item xs={6} sm={6} md={6} className={styles.info_container}>
-                    <div 
-                        data-aos="fade-up"
-                        onMouseEnter={() => setHoveredIndex(idx)}
-                        onMouseLeave={() => setHoveredIndex(null)}
-                        style={{ 
-                            cursor: 'pointer',
-                            height: '100%',
-                            padding: '12px',
-                            boxSizing: 'border-box',
-                            transition: 'transform 0.3s ease'
-                        }}
-                    >
-                        <div style={{ 
-                            position: 'relative',
-                            height: '100%',
-                            overflow: 'hidden',
-                            boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
-                            borderRadius: '8px',
-                        }}>
-                            <Image 
-                                src={originalSrc}
-                                alt={`Project ${idx + 1}`}
-                                width={500}
-                                height={300}
-                                priority={true}
-                                loading="eager"
-                                style={imageStyle}
-                            />
-                            <div style={overlayStyle}>
-                                View Project
+                <Grid key={idx} item xs={12} sm={6} md={6} className={styles.info_container}>
+                    <Link href="/works" style={{ textDecoration: 'none' }}>
+                        <div 
+                            data-aos="fade-up"
+                            onMouseEnter={() => setHoveredIndex(idx)}
+                            onMouseLeave={() => setHoveredIndex(null)}
+                            style={{ 
+                                cursor: 'pointer',
+                                height: '100%',
+                                padding: '12px',
+                                boxSizing: 'border-box',
+                                transition: 'transform 0.3s ease'
+                            }}
+                        >
+                            <div style={{ 
+                                position: 'relative',
+                                height: '100%',
+                                overflow: 'hidden',
+                                boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
+                                borderRadius: '8px',
+                            }}>
+                                <Image 
+                                    src={originalSrc}
+                                    alt={`Project ${idx + 1}`}
+                                    width={500}
+                                    height={300}
+                                    priority={true}
+                                    loading="eager"
+                                    style={imageStyle}
+                                />
+                                <div style={overlayStyle}>
+                                    View Project
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </Link>
                 </Grid>
             );
         });
@@ -181,7 +183,7 @@ export default function Home() {
                             </h1>
                         </div>
 
-                        <Grid container spacing={3} justifyContent="center" style={{ maxWidth: '1200px', margin: '0 auto', padding: '20px' }}>
+                        <Grid container spacing={3} justifyContent="center" className={styles.images}>
                             {renderProjectGrid()}
                         </Grid>
                     </section>
