@@ -8,10 +8,13 @@ import styles from "@/styles/WorksShowcase.module.scss";
 export default function WorksShowcase(props) {
     let public_url = "";
     const router = useRouter();
+
     const [preloaded, setPreloaded] = useState(false);
-    const [activeIndex, setActiveIndex] = useState(null);
-    const [isGridView, setIsGridView] = useState(true);
+    const [activeProject, setActiveProject] = useState(null);
+    const [viewMode, setViewMode] = useState("staggered"); // "staggered", "carousel", "mosaic"
+    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const containerRef = useRef(null);
+    const projectsRef = useRef([]);
 
     const getImageSrc = useMemo(() => {
         return (p) => `${public_url}/images/projects/${props.data[props.theme].title}/${p.dir}/${p.cover}`;
@@ -28,6 +31,15 @@ export default function WorksShowcase(props) {
             setPreloaded(true);
         }
     }, [props.data, props.theme, getImageSrc, preloaded]);
+
+    useEffect(() => {
+        const handleMouseMove = (e) => {
+            setMousePosition({ x: e.clientX, y: e.clientY });
+        };
+
+        window.addEventListener('mousemove', handleMouseMove);
+        return () => window.removeEventListener('mousemove', handleMouseMove);
+    }, []);
 
     // Get category-specific elements
     const getCategoryColor = () => {
@@ -61,38 +73,68 @@ export default function WorksShowcase(props) {
         return projects;
     }, [props.data, props.theme]);
 
-    const toggleView = () => {
-        setIsGridView(!isGridView);
+    const cycleViewMode = () => {
+        const modes = ["staggered", "list", "mosaic"];
+        const currentIndex = modes.indexOf(viewMode);
+        const nextIndex = (currentIndex + 1) % modes.length;
+        setViewMode(modes[nextIndex]);
+    };
+
+    const getParallaxOffset = (index) => {
+        if (!containerRef.current) return { x: 0, y: 0 };
+        
+        const rect = containerRef.current.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        
+        // Reduce divisor for smoother, more subtle movement
+        const offsetX = (mousePosition.x - centerX) / 100;
+        const offsetY = (mousePosition.y - centerY) / 100;
+        
+        // Different offset for each item to create depth
+        const depth = (index % 3 + 1) * 0.5;
+        
+        return {
+            x: offsetX * depth,
+            y: offsetY * depth
+        };
     };
 
     return (
         <motion.div 
-            className={styles.showcaseContainer}
+            className={styles.dynamicShowcase}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
             ref={containerRef}
         >
-            <div className={styles.categoryBanner} style={{ borderColor: getCategoryColor() }}>
+            <div className={styles.categoryHeader} style={{ borderColor: getCategoryColor() }}>
                 <motion.div 
-                    className={styles.categoryIcon}
+                    className={styles.categoryPulse}
                     style={{ backgroundColor: getCategoryColor() }}
-                    whileHover={{ scale: 1.2, rotate: 180 }}
-                    transition={{ duration: 0.5 }}
+                    animate={{ 
+                        scale: [1, 1.2, 1],
+                        opacity: [0.7, 0.9, 0.7]
+                    }}
+                    transition={{ 
+                        duration: 2,
+                        repeat: Infinity,
+                        repeatType: "reverse"
+                    }}
                 />
                 
-                <div className={styles.categoryInfo}>
+                <div className={styles.categoryContent}>
                     <motion.h1 
-                        className={styles.categoryTitle}
-                        initial={{ x: -50, opacity: 0 }}
-                        animate={{ x: 0, opacity: 1 }}
+                        className={styles.categoryHeading}
+                        initial={{ y: -30, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
                         transition={{ delay: 0.2, duration: 0.5 }}
                     >
                         {props.data[props.theme].title}
                     </motion.h1>
                     
                     <motion.p 
-                        className={styles.categoryDescription}
+                        className={styles.categorySubheading}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.4, duration: 0.5 }}
@@ -102,87 +144,240 @@ export default function WorksShowcase(props) {
                 </div>
                 
                 <motion.button 
-                    className={styles.viewToggle}
-                    onClick={toggleView}
+                    className={styles.viewModeToggle}
+                    onClick={cycleViewMode}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                 >
-                    {isGridView ? "List View" : "Grid View"}
+                    <span className={styles.toggleIcon}>⟳</span>
+                    <span className={styles.toggleText}>Change View</span>
                 </motion.button>
             </div>
 
             <AnimatePresence mode="wait">
-                {isGridView ? (
+                {viewMode === "staggered" && (
                     <motion.div 
-                        key="grid"
-                        className={styles.projectsGrid}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
+                        key="staggered"
+                        className={styles.staggeredGrid}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
                         transition={{ duration: 0.5 }}
                     >
-                        {projectItems.map((project, index) => (
-                            <motion.div 
-                                className={styles.projectCard}
-                                key={index}
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: index * 0.1, duration: 0.5 }}
-                                whileHover={{ y: -10, scale: 1.02 }}
-                            >
-                                <Link href={`/works/${project.title}`} passHref>
-                                    <div className={styles.cardContent}>
-                                        {project.cover && (
-                                            <div className={styles.imageWrapper}>
-                                                <Image
-                                                    src={getImageSrc(project)}
-                                                    alt={project.title}
-                                                    width={400}
-                                                    height={300}
-                                                    className={styles.projectImage}
-                                                    priority={index < 2}
-                                                />
-                                                <div className={styles.imageOverlay} style={{ backgroundColor: `${getCategoryColor()}33` }}>
-                                                    <span>View Project</span>
+                        {projectItems.map((project, index) => {
+                            const parallax = getParallaxOffset(index);
+                            return (
+                                <motion.div 
+                                    className={styles.staggeredItem}
+                                    key={index}
+                                    ref={el => projectsRef.current[index] = el}
+                                    initial={{ opacity: 0, y: 50 }}
+                                    animate={{ 
+                                        opacity: 1, 
+                                        y: 0,
+                                    }}
+                                    style={{
+                                        x: parallax.x,
+                                        y: parallax.y
+                                    }}
+                                    transition={{ 
+                                        delay: index * 0.15, 
+                                        duration: 0.5,
+                                        // Remove the x and y transitions to use the style prop instead
+                                    }}
+                                    whileHover={{ 
+                                        scale: 1.05, 
+                                        boxShadow: `0 20px 40px rgba(0,0,0,0.3), 0 0 30px ${getCategoryColor()}40`
+                                    }}
+                                >
+                                    <Link href={`/works/${project.title}`} passHref>
+                                        <div className={styles.staggeredContent}>
+                                            {project.cover && (
+                                                <div className={styles.staggeredImageWrapper}>
+                                                    <Image
+                                                        src={getImageSrc(project)}
+                                                        alt={project.title}
+                                                        fill
+                                                        sizes="(max-width: 768px) 100vw, 33vw"
+                                                        className={styles.staggeredImage}
+                                                        priority={index < 2}
+                                                    />
+                                                    <motion.div 
+                                                        className={styles.staggeredOverlay}
+                                                        style={{ backgroundColor: getCategoryColor() }}
+                                                        initial={{ opacity: 0 }}
+                                                        whileHover={{ opacity: 0.2 }}
+                                                    />
+                                                </div>
+                                            )}
+                                            <div className={styles.staggeredInfo}>
+                                                <h3 className={styles.staggeredTitle}>{project.title}</h3>
+                                                <div className={styles.staggeredMeta}>
+                                                    <span className={styles.staggeredYear}>{project.year || "2023"}</span>
+                                                    <span className={styles.staggeredDot} style={{ backgroundColor: getCategoryColor() }}></span>
+                                                    <span className={styles.staggeredType}>{props.data[props.theme].title.split(' ')[0]}</span>
                                                 </div>
                                             </div>
-                                        )}
-                                        <div className={styles.projectInfo}>
-                                            <h3>{project.title}</h3>
-                                            <div className={styles.projectMeta}>
-                                                <span className={styles.projectYear}>{project.year || "2023"}</span>
-                                                <span className={styles.projectDot} style={{ backgroundColor: getCategoryColor() }}></span>
-                                                <span className={styles.projectType}>{props.data[props.theme].title}</span>
+                                            <div className={styles.staggeredAction}>
+                                                <span className={styles.staggeredView}>View</span>
+                                                <motion.span 
+                                                    className={styles.staggeredArrow}
+                                                    animate={{ x: [0, 5, 0] }}
+                                                    transition={{ 
+                                                        duration: 1.5,
+                                                        repeat: Infinity,
+                                                        repeatType: "loop"
+                                                    }}
+                                                >→</motion.span>
                                             </div>
                                         </div>
-                                    </div>
-                                </Link>
-                            </motion.div>
-                        ))}
+                                    </Link>
+                                </motion.div>
+                            );
+                        })}
                     </motion.div>
-                ) : (
+                )}
+
+                {viewMode === "list" && (
                     <motion.div 
                         key="list"
-                        className={styles.projectsList}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
+                        className={styles.listContainer}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
                         transition={{ duration: 0.5 }}
                     >
                         {projectItems.map((project, index) => (
                             <motion.div 
                                 className={styles.listItem}
                                 key={index}
-                                initial={{ opacity: 0, x: -20 }}
+                                initial={{ opacity: 0, x: -30 }}
                                 animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: index * 0.1, duration: 0.5 }}
-                                whileHover={{ x: 10, backgroundColor: `${getCategoryColor()}11` }}
+                                transition={{ 
+                                    delay: index * 0.1, 
+                                    duration: 0.5,
+                                    ease: [0.25, 0.1, 0.25, 1]
+                                }}
+                                whileHover={{ 
+                                    x: 10,
+                                    backgroundColor: `rgba(255,255,255,0.05)`,
+                                    boxShadow: `0 10px 30px rgba(0,0,0,0.15), 0 0 0 1px ${getCategoryColor()}30`
+                                }}
                             >
                                 <Link href={`/works/${project.title}`} passHref>
                                     <div className={styles.listContent}>
-                                        <span className={styles.projectNumber}>{(index + 1).toString().padStart(2, '0')}</span>
-                                        <h3 className={styles.projectTitle}>{project.title}</h3>
-                                        <div className={styles.projectArrow}>→</div>
+                                        <div className={styles.listNumber}>
+                                            <span>{(index + 1).toString().padStart(2, '0')}</span>
+                                            <motion.div 
+                                                className={styles.listLine}
+                                                style={{ backgroundColor: getCategoryColor() }}
+                                                initial={{ width: 0 }}
+                                                whileHover={{ width: '100%' }}
+                                            />
+                                        </div>
+                                        
+                                        {project.cover && (
+                                            <div className={styles.listImageWrapper}>
+                                                <Image
+                                                    src={getImageSrc(project)}
+                                                    alt={project.title}
+                                                    fill
+                                                    sizes="(max-width: 768px) 120px, 180px"
+                                                    className={styles.listImage}
+                                                />
+                                                <motion.div 
+                                                    className={styles.listImageOverlay}
+                                                    initial={{ opacity: 0 }}
+                                                    whileHover={{ opacity: 0.3 }}
+                                                    style={{ backgroundColor: getCategoryColor() }}
+                                                />
+                                            </div>
+                                        )}
+                                        
+                                        <div className={styles.listInfo}>
+                                            <h3 className={styles.listTitle}>{project.title}</h3>
+                                            <p className={styles.listDescription}>
+                                                {project.description || `A project exploring innovative design solutions in ${props.data[props.theme].title.toLowerCase()}.`}
+                                            </p>
+                                            <div className={styles.listMeta}>
+                                                <span className={styles.listYear}>{project.year || "2023"}</span>
+                                                <span className={styles.listDot} style={{ backgroundColor: getCategoryColor() }}></span>
+                                                <span className={styles.listCategory}>{props.data[props.theme].title.split(' ')[0]}</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <motion.div 
+                                            className={styles.listAction}
+                                            whileHover={{ x: 5 }}
+                                            whileTap={{ scale: 0.95 }}
+                                        >
+                                            <motion.span 
+                                                className={styles.listArrow}
+                                                animate={{ x: [0, 5, 0] }}
+                                                transition={{ 
+                                                    duration: 1.5,
+                                                    repeat: Infinity,
+                                                    repeatType: "loop"
+                                                }}
+                                            >→</motion.span>
+                                        </motion.div>
+                                    </div>
+                                </Link>
+                            </motion.div>
+                        ))}
+                    </motion.div>
+                )}
+
+                {viewMode === "mosaic" && (
+                    <motion.div 
+                        key="mosaic"
+                        className={styles.mosaicGrid}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.5 }}
+                    >
+                        {projectItems.map((project, index) => (
+                            <motion.div 
+                                className={`${styles.mosaicItem} ${styles[`mosaicItem${index + 1}`]}`}
+                                key={index}
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ delay: index * 0.1, duration: 0.5 }}
+                                whileHover={{ 
+                                    scale: 1.03,
+                                    zIndex: 5
+                                }}
+                            >
+                                <Link href={`/works/${project.title}`} passHref>
+                                    <div className={styles.mosaicContent}>
+                                        {project.cover && (
+                                            <div className={styles.mosaicImageWrapper}>
+                                                <Image
+                                                    src={getImageSrc(project)}
+                                                    alt={project.title}
+                                                    fill
+                                                    sizes="(max-width: 768px) 100vw, 50vw"
+                                                    className={styles.mosaicImage}
+                                                />
+                                                <motion.div 
+                                                    className={styles.mosaicOverlay}
+                                                    initial={{ opacity: 0.3 }}
+                                                    whileHover={{ opacity: 0.1 }}
+                                                    style={{ 
+                                                        background: `linear-gradient(to bottom, transparent, ${getCategoryColor()}99)`
+                                                    }}
+                                                />
+                                            </div>
+                                        )}
+                                        <div className={styles.mosaicInfo}>
+                                            <h3 className={styles.mosaicTitle}>{project.title}</h3>
+                                            <div className={styles.mosaicMeta}>
+                                                <span>{project.year || "2023"}</span>
+                                                <span className={styles.mosaicDivider}>|</span>
+                                                <span>{props.data[props.theme].title.split(' ')[0]}</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </Link>
                             </motion.div>
@@ -203,6 +398,3 @@ export default function WorksShowcase(props) {
         </motion.div>
     );
 }
-
-
-
