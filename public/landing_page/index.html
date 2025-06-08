@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RGB Design Studio</title>
+    <meta name="description" content="RGB Design Studio - Innovation, Research, Design">
+    <link rel="stylesheet" href="./styles.css">
+    <script>
+        // Reset scroll position before any content loads
+        window.scrollTo(0, 0);
+        history.scrollRestoration = "manual";
+    </script>
+</head>
+<body>
+    <div class="particles-container"></div>
+    <div class="model"></div>
+
+
+    <section class="intro">
+        <div class="header-row">
+            <h1>Innovation</h1>
+        </div>
+        <div class="header-row">
+            <h1>Research</h1>
+        </div>
+        <div class="header-row">
+            <h1>Design</h1>
+        </div>
+    </section>
+
+    <section class="archive">
+        <div class="archive-header">
+            <p>Featured Projects</p>
+        </div>
+
+        <div class="archive-item">
+            <h2>Orb[i]s</h2>
+            <div class="archive-info">
+                <p>Architecture</p>
+                <p>Design Research</p>
+                <p>Urban Planning</p>
+                <p>2023</p>
+            </div>
+        </div>
+        <div class="archive-item">
+            <h2>Vaults of Sechseläutenplatz</h2>
+            <div class="archive-info">
+                <p>Structural Design</p>
+                <p>RhinoVault</p>
+                <p>Zürich</p>
+                <p>2022</p>
+            </div>
+        </div>
+        <div class="archive-item">
+            <h2>Take a Seat</h2>
+            <div class="archive-info">
+                <p>Urban Furniture</p>
+                <p>Recyclable Design</p>
+                <p>Public Space</p>
+                <p>2021</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="outro">
+        <div class="outro-copy">
+            <h2>We are a multidisciplinary design studio specializing in architecture, spatial installations, and immersive visual experiences.</h2>
+            <p>Projects <span>projects@rgbdesign.in</span></p>
+            <p>Contact <span>hello@rgbdesign.in</span></p>
+        </div>
+        <div class="footer">
+            <p>
+                RGB Design Studio creates innovative solutions at the intersection of technology, art, and human experience.
+            </p>
+            <p>Built by G.Jayaditya</p>
+        </div>
+    </section>
+
+    <script src="https://unpkg.com/split-type"></script>
+    <script src="https://unpkg.com/lenis@1.1.16/dist/lenis.min.js"></script>
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="./script.js" type="module"></script>
+</body>
+</html>
+
+

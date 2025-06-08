@@ -1,0 +1,363 @@
+@font-face {
+    font-family:"Akk" ;
+    src: url("../fonts/Akkurat.ttf") format('truetype');
+}
+@font-face {
+    font-family:"gsr" ;
+    src: url("../fonts/gascogne-serial-regular.ttf") format('truetype');
+}
+
+
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Akk';
+}
+
+html, body{
+    width: 100vw;
+    height: 400vh;
+    background-color: #111;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+h1{
+    text-transform: uppercase;
+    font-size: 225px;
+    font-weight: 400;
+    line-height: 0.85;
+    position: relative;
+    z-index: 2;
+}
+
+a,p{
+    text-decoration: none;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 0.9;
+    position: relative;
+    z-index: 2;
+}
+
+p span{
+    font-family: "gsr";
+}
+
+.model{
+    position: fixed;
+    z-index: 2;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    background: transparent;
+    overflow: hidden;
+}
+
+.model canvas {
+    background-color: red;
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    padding: 2em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+}
+nav a{
+    text-transform: uppercase;
+}
+
+section{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+}
+
+.intro{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1em;
+    position: relative;
+    z-index: 2;
+    /* margin-top: 2vw; */
+
+}
+
+.header-row{
+    font-family: 'man';
+    /* background-color: aquamarine; */
+    display: flex;
+    font-size: 5vw;
+    gap: 12em;
+    align-items: center;
+}
+
+/* .header-row p{
+    background-color: beige;
+    text-transform: uppercase;
+    width: 8vw;
+} */
+
+.archive{
+    height: 200vh;
+    display: flex;
+    flex-direction: column;
+    gap: 3em;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.archive-header p{
+    font-family: 'gsr';
+    font-style: italic;
+}
+
+.archive h2{
+    font-family: 'gsr';
+    font-size: 120px;
+    font-weight: 300;
+    color: #4f4f4f;
+}
+
+.archive-info{
+    width: 100%;
+    padding: 1em;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.archive-info p{
+    text-transform: uppercase;
+    color: #4f4f4f;
+}
+
+.outro{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 6em 2em 2em 2em;
+    position: relative;
+    z-index: 2;
+}
+
+.outro-copy h2{
+    width: 75%;
+    text-transform: uppercase;
+    font-size: 60px;
+    font-weight: 400;
+    line-height: 1;
+    margin-bottom: 0.5em;
+}
+
+.outro-copy h2 .line{
+    position: relative;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    overflow: hidden;
+    display: block;
+}
+
+.outro-copy h2 .line span{
+    position: relative;
+    will-change: transform;
+    display: flex;
+    transform: translateY(70px);
+}
+
+.outro-copy p{
+    display: flex;
+    margin: 1em 0;
+    gap: 2em;
+    text-transform: uppercase;
+}
+
+.outro-copy p span{
+    font-family: 'Akk';
+}
+
+.footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 2;
+}
+
+.lenis.lenis-smooth{
+    scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth[data-lenis-prevent]{
+    overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped{
+    overflow: clip;
+}
+
+.lenis.lenis-smooth iframe{
+    pointer-events: none;
+}
+
+.split-wrapper {
+    display: inline-block;
+    overflow: hidden;
+}
+
+.char {
+    display: inline-block;
+    transform-origin: center center;
+    backface-visibility: hidden;
+}
+
+/* Mobile Styles */
+@media screen and (max-width: 768px) {
+    html, body {
+        height: 300vh;
+        background: linear-gradient(180deg, 
+            #0f0f1a 0%, 
+            #1a1a2e 25%, 
+            #16213e 50%, 
+            #1a1a2e 75%, 
+            #0f0f1a 100%
+        );
+    }
+
+    .model {
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        transform: none;
+    }
+
+    .model canvas {
+        position: fixed;
+        width: 100vw !important;
+        height: 100vh !important;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: transparent !important;
+    }
+
+    h1 {
+        font-size: clamp(60px, 15vw, 120px);
+        line-height: 0.9;
+    }
+
+    .header-row {
+        font-size: clamp(16px, 4vw, 3vw);
+        gap: clamp(2em, 4vw, 4em);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0 1em;
+    }
+
+    .archive {
+        height: auto;
+        padding: 4em 1em;
+    }
+
+    .archive h2 {
+        font-size: clamp(40px, 10vw, 60px);
+        color: #333;
+    }
+
+    .archive-info {
+        flex-direction: column;
+        gap: 1em;
+        padding: 0 1em;
+    }
+
+    .archive-info p {
+        color: #333;
+        font-size: clamp(12px, 2vw, 13px);
+    }
+
+    .outro {
+        padding: 4em 1em 2em 1em;
+    }
+
+    .outro-copy h2 {
+        width: 100%;
+        font-size: clamp(24px, 6vw, 32px);
+        line-height: 1.2;
+    }
+
+    .outro-copy p {
+        flex-direction: column;
+        gap: 0.5em;
+        font-size: clamp(12px, 2vw, 13px);
+    }
+
+    .footer {
+        flex-direction: column;
+        gap: 2em;
+        align-items: flex-start;
+        padding: 0 1em 2em 1em;
+    }
+
+    nav {
+        padding: 1em;
+    }
+
+    nav a {
+        font-size: clamp(12px, 2vw, 13px);
+    }
+}
+
+/* Small Mobile Styles */
+@media screen and (max-width: 480px) {
+    .model {
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .model canvas {
+        width: 100vw !important;
+        height: 100vh !important;
+    }
+
+    .header-row {
+        gap: clamp(1em, 2vw, 2em);
+    }
+
+    .archive {
+        padding: 3em 1em;
+    }
+
+    .outro {
+        padding: 3em 1em 2em 1em;
+    }
+}
