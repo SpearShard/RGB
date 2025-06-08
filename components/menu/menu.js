@@ -7,7 +7,7 @@ import {gsap} from "gsap";
 import {useGSAP} from "@gsap/react";
 import { useRouter } from 'next/navigation';
 
-const menu = () => {
+const Menu = () => {
     const container = useRef();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const tl = useRef();
@@ -135,4 +135,4 @@ const menu = () => {
     );
 };
 
-export default menu;
+export default Menu;
