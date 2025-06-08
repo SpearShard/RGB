@@ -121,7 +121,7 @@ const Menu = () => {
                 <div className="menu-footer">
                     <div className="menu-divider">
                         <div className="menu-footer-copy">
-                            <div className="slogan"><p>Tomorrow's Brands, Today</p></div>
+                            <div className="slogan"><p>Tomorrow&apos;s Brands, Today</p></div>
                             <div className="socials">
                                 <a href="#">Twitter</a>
                                 <a href="#">Instagram</a>
