@@ -16,7 +16,7 @@ const ContactPage = () => {
                 <div className="header-section mb-20">
                     
                     <p className="text-lg md:text-xl text-gray-400 max-w-2xl">
-                        Let's create something extraordinary together. Reach out to us for collaborations, inquiries, or just to say hello.
+                        Let&apos;s create something extraordinary together. Reach out to us for collaborations, inquiries, or just to say hello.
                     </p>
                 </div>
 
@@ -99,8 +99,8 @@ const ContactPage = () => {
                         <div className="availability">
                             <h2 className="text-2xl md:text-3xl font-['dirty'] mb-6">Availability</h2>
                             <p className="text-gray-400">
-                                We're currently accepting new projects for Q2 2024. 
-                                Let's discuss your ideas and create something amazing together.
+                                We@apos;re currently accepting new projects for Q2 2024. 
+                                Let@apos;s discuss your ideas and create something amazing together.
                             </p>
                         </div>
                     </div>
