@@ -92,7 +92,7 @@ const Menu = () => {
                         <div className="video">
                             <div className="video-preview"></div>
                             <div className="video-details">
-                                <p><i className="ph-fill ph-play-circle"></i> Play reel</p>
+                                <p><i className="ph-fill ph-play-circle"></i> Play feel</p>
                                 <p>-01:18</p>
                             </div>
                         </div>
@@ -113,19 +113,17 @@ const Menu = () => {
                         <div className="menu-link">
                             <Link href="/projects" onClick={(e) => handleLinkClick(e, '/projects')}>Projects</Link>
                         </div>
-                        <div className="btn">
-                            <Link href="/take-a-seat" onClick={(e) => handleLinkClick(e, '/take-a-seat')}>Take a seat</Link>
-                        </div>
+                        
                     </div>
                 </div>
                 <div className="menu-footer">
                     <div className="menu-divider">
                         <div className="menu-footer-copy">
-                            <div className="slogan"><p>Tomorrow&apos;s Brands, Today</p></div>
+                            <div className="slogan"><p>Inspire Innovate, Integrate</p></div>
                             <div className="socials">
-                                <a href="#">Twitter</a>
-                                <a href="#">Instagram</a>
-                                <a href="#">LinkedIn</a>
+                                <a href="#"><i className="fab fa-linkedin text-2xl"></i></a>
+                                <a href="#"><i className="fab fa-twitter text-2xl"></i></a>
+                                <a href="#"><i className="fab fa-instagram text-2xl"></i></a>
                             </div>
                         </div>
                     </div>

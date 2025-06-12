@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', initAnimations);
 console.log('THREE:', THREE);
 
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x111111);
+scene.background = null;
 console.log('Scene created');
 
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -274,24 +274,26 @@ function animate() {
         if (isMobile) {
             // New mobile animation sequence
             // Circular motion with scale
-            const angle = scrollProgress * Math.PI * 2;
-            const radius = 1.5;
+            // const angle = scrollProgress * Math.PI * 2;
+            // const radius = 1.5;
             
-            // Circular path
-            model.position.x = Math.cos(angle) * radius;
-            model.position.y = Math.sin(angle) * radius;
+            // // Circular path
+            // model.position.x = Math.cos(angle) * radius;
+            // model.position.y = Math.sin(angle) * radius;
             
-            // Rotation follows the circular path
-            model.rotation.y = angle;
-            model.rotation.z = angle * 0.5;
+            // // Rotation follows the circular path
+            // model.rotation.y = angle;
+            // model.rotation.z = angle * 0.5;
             
             // Scale pulses with the motion
-            const scale = 0.8 + Math.sin(angle) * 0.2;
-            model.scale.set(scale, scale, scale);
+            // const scale = 0.8 + Math.sin(angle) * 0.2;
+            // model.scale.set(scale, scale, scale);
+            model.rotation.y = scrollProgress * Math.PI * 3; // Two full rotations
+            model.rotation.x = scrollProgress * Math.PI * 4.7;
         } else {
             // Desktop animation (unchanged)
             model.rotation.y = scrollProgress * Math.PI * 4; // Two full rotations
-            model.rotation.x = scrollProgress * Math.PI * 0.5; // Slight tilt
+            model.rotation.x = scrollProgress * Math.PI * 2.7; // Slight tilt
         }
     }
     

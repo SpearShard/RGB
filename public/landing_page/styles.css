@@ -6,6 +6,14 @@
     font-family:"gsr" ;
     src: url("../fonts/gascogne-serial-regular.ttf") format('truetype');
 }
+@font-face {
+    font-family:"dirty" ;
+    src: url("../fonts/dxslight-mediumultra-free-personal-use.otf") format('truetype');
+}
+@font-face {
+    font-family:"un" ;
+    src: url("../fonts/MonumentExtended-Regular.otf") format('truetype');
+}
 
 
 
@@ -14,13 +22,13 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Akk';
+    /* font-family: 'Akk'; */
 }
 
 html, body{
     width: 100vw;
     height: 400vh;
-    background-color: #111;
+    background-color: #000000;
     color: #fff;
     overflow-x: hidden;
 }
@@ -61,13 +69,14 @@ p span{
 }
 
 .model canvas {
-    background-color: red;
+    /* background-color: red; */
     width: 100% !important;
     height: 100% !important;
     display: block;
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 100;
     pointer-events: none;
 }
 
@@ -111,6 +120,25 @@ section{
     font-size: 5vw;
     gap: 12em;
     align-items: center;
+}
+
+.header-row h1{
+    font-size: 10.4vw;
+    font-family: 'un';
+    line-height: 13vw;
+    letter-spacing: 1vw;   
+}
+.header-row h1:nth-child(2){
+    z-index: -1;
+}
+.outro-copy h2{
+    font-family: 'un';
+}
+.outro-copy p{
+    font-family: 'dirty';
+}
+.archive-item h2{
+    font-family: 'dirty';
 }
 
 /* .header-row p{
@@ -361,3 +389,33 @@ section{
         padding: 3em 1em 2em 1em;
     }
 }
+
+@media (max-width: 376px) {
+    .intro{
+        /* background-color: thistle; */
+        gap: 2vw;
+    }
+    .header-row{
+        /* line-height: 200vw; */
+        /* background-color: thistle; */
+        height: auto;
+        
+    }
+    
+    .header-row h1{
+        line-height: 40vw;
+        font-size: 23vw;
+        font-family: 'dirty';
+    }
+    .archive-item h2{
+        font-family: 'un';
+    }
+    .archive-item p{
+        font-family: 'dirty';
+    }
+    .whole-body{
+        /* width: 100vw; */
+    }
+
+}
+    

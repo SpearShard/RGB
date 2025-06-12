@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function(){
     }
 
     function updatePosition() {
-        const scrollAmount = window.scrollY * 0.0001;
+        const scrollAmount = -window.scrollY * 0.0001;
         document.querySelectorAll(".item").forEach(function (item, index){
             const angle = baseRotation + (index * angleIncrement) + scrollAmount;
             const x = center.x + radius * Math.cos(angle);
