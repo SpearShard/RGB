@@ -390,7 +390,7 @@ section{
     }
 }
 
-@media (max-width: 376px) {
+@media (max-width: 500px) {
     .intro{
         /* background-color: thistle; */
         gap: 2vw;
